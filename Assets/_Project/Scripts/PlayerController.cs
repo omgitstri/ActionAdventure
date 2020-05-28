@@ -15,6 +15,20 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
     }
 
+    private void Update()
+    {
+        if(EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, 10f))
+        {
+            animator.SetBool("Armed", true);
+            //animator.SetBool("Draw", true);
+        }
+        else
+        {
+            animator.SetBool("Armed", false);
+            animator.SetBool("Draw", false);
+        }
+    }
+
     public void OnMove(InputValue value)
     {
         Vector2 inputMovement = value.Get<Vector2>();
