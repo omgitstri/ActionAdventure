@@ -6,6 +6,13 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private CinemachineFreeLook thirdPerson = null;
+    [SerializeField] private CinemachineFreeLook overShoulder = null;
+    [SerializeField] private Transform spine = null;
+
+    private bool isOverShoulder = false;
+    private Vector2 rotateAxis = Vector2.zero;
+
     private Animator animator = null;
     private PlayerInput playerInput = null;
 
@@ -17,15 +24,21 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, 10f))
+        if (EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, 10f))
         {
             animator.SetBool("Armed", true);
             //animator.SetBool("Draw", true);
         }
         else
         {
+            overShoulder.enabled = false;
             animator.SetBool("Armed", false);
             animator.SetBool("Draw", false);
+        }
+
+        if (overShoulder)
+        {
+            OnRotate();
         }
     }
 
@@ -37,58 +50,90 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Vertical", inputMovement.y * 2);
     }
 
-    public void OnCrouch()
-    {
-        if (animator.GetBool("Crouch") == true)
-        {
-            animator.SetBool("Crouch", false);
-        }
-        else
-        {
-            animator.SetBool("Crouch", true);
-        }
-    }
+    //public void OnCrouch()
+    //{
+    //    if (animator.GetBool("Crouch") == true)
+    //    {
+    //        animator.SetBool("Crouch", false);
+    //    }
+    //    else
+    //    {
+    //        animator.SetBool("Crouch", true);
+    //    }
+    //}
 
-    public void OnDodge()
+    //public void OnDodge()
+    //{
+    //    animator.SetTrigger("Dodge");
+    //}
+
+    public void OnRotate()
     {
-        animator.SetTrigger("Dodge");
+        transform.Rotate(Vector3.up, rotateAxis.x);
+
+
+        spine.Rotate(Vector3.forward, rotateAxis.y);
+
+        //float _z = Mathf.Clamp(spine.localRotation.eulerAngles.z, -30, 30);
+        //spine.localRotation = Quaternion.Euler(spine.localRotation.eulerAngles.x, spine.localRotation.eulerAngles.y, _z);
     }
 
     public void OnCameraLook(InputValue value)
     {
-        Vector2 inputMovement = value.Get<Vector2>();
-    }
+        Vector2 inputLook = value.Get<Vector2>();
 
-    public void OnToggleWeapon()
-    {
-        if (animator.GetBool("Armed") == true)
-        {
-            animator.SetBool("Armed", false);
-            animator.SetBool("Draw", false);
-        }
-        else
-        {
-            animator.SetBool("Armed", true);
-        }
-    }
+        thirdPerson.m_XAxis.m_InputAxisValue = inputLook.x;
+        thirdPerson.m_YAxis.m_InputAxisValue = inputLook.y;
 
-    public void OnAim()
-    {
-        if (animator.GetBool("Draw"))
+        if (!animator.GetBool("Armed"))
         {
-            animator.SetBool("Draw", false);
+            isOverShoulder = false;
+            rotateAxis = Vector2.zero;
         }
-        else
+        else if (animator.GetBool("Armed") && inputLook != Vector2.zero)
         {
-            animator.SetBool("Armed", true);
+            overShoulder.enabled = true;
+            rotateAxis = inputLook;
+            isOverShoulder = true;
             animator.SetBool("Draw", true);
         }
+        else if (inputLook == Vector2.zero)
+        {
+            animator.SetTrigger("Attack");
+            rotateAxis = Vector2.zero;
+        }
     }
 
-    public void OnAttack()
-    {
-        animator.SetTrigger("Attack");
-        animator.SetBool("Armed", true);
-        animator.SetBool("Draw", true);
-    }
+    //public void OnToggleWeapon()
+    //{
+    //    if (animator.GetBool("Armed") == true)
+    //    {
+    //        animator.SetBool("Armed", false);
+    //        animator.SetBool("Draw", false);
+    //    }
+    //    else
+    //    {
+    //        animator.SetBool("Armed", true);
+    //    }
+    //}
+
+    //public void OnAim()
+    //{
+    //    if (animator.GetBool("Draw"))
+    //    {
+    //        animator.SetBool("Draw", false);
+    //    }
+    //    else
+    //    {
+    //        animator.SetBool("Armed", true);
+    //        animator.SetBool("Draw", true);
+    //    }
+    //}
+
+    //public void OnAttack()
+    //{
+    //    animator.SetTrigger("Attack");
+    //    animator.SetBool("Armed", true);
+    //    animator.SetBool("Draw", true);
+    //}
 }

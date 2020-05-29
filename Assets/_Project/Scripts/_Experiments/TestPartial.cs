@@ -5,9 +5,8 @@ using UnityEngine;
 public partial class TestPartial : MonoBehaviour
 {
     //main script that runs the logic
-
-
     public Transform test;
+
     void Start()
     {
         Rawr();
