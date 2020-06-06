@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class MonobehaviourCallbacks : MonoBehaviour
 {
     [SerializeField] UnityEvent _Start = null;
+    [SerializeField] UnityEvent _Update = null;
 
     void Start()
     {
@@ -14,6 +15,6 @@ public class MonobehaviourCallbacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _Update.Invoke();
     }
 }

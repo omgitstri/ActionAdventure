@@ -14,30 +14,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - metadata:
-      entityId: df642a8f-c441-4e09-a6fa-519d9602b31a
+      entityId: 12921a19-5d61-437e-b651-cd29c0df9187
     rs:
       key: cameraSensitivityX
       type: float
       value: 4
   - metadata:
-      entityId: 9af396c6-4672-4b4c-a273-34c0a20c08e2
+      entityId: eeaec8c2-ae04-4630-bd50-b4ab6458dc26
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
+  - metadata:
+      entityId: f1aab29e-b22a-4d69-9819-4dcaeead7073
+    rs:
+      key: speedBlendTime
+      type: float
+      value: 5
+  - metadata:
+      entityId: 90fe51a4-3af8-4242-9481-26b3d6948456
+    rs:
+      key: enemyCount
+      type: int
+      value: 3
   rsLastCachedKeyList:
   - metadata:
-      entityId: df642a8f-c441-4e09-a6fa-519d9602b31a
+      entityId: 12921a19-5d61-437e-b651-cd29c0df9187
     rs:
       key: cameraSensitivityX
       type: float
       value: 4
   - metadata:
-      entityId: 9af396c6-4672-4b4c-a273-34c0a20c08e2
+      entityId: eeaec8c2-ae04-4630-bd50-b4ab6458dc26
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
+  - metadata:
+      entityId: f1aab29e-b22a-4d69-9819-4dcaeead7073
+    rs:
+      key: speedBlendTime
+      type: float
+      value: 5
+  - metadata:
+      entityId: 90fe51a4-3af8-4242-9481-26b3d6948456
+    rs:
+      key: enemyCount
+      type: int
+      value: 3
   configId: ed481a7f-5425-4ffc-ae8c-8ed875b5f224
   currentEnvironmentId: 022da645-9d8a-4b95-af46-aef20cd8bce8
   environments:

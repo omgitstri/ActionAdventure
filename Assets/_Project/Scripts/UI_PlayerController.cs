@@ -25,7 +25,7 @@ public class UI_PlayerController : MonoBehaviour
     private float targetedSpeed = 0f;
 
     //config
-    private float speedBlend = 0.1f;
+    private float speedBlendTime = 0.1f;
     private float cameraSensitivityX = 3f;
     private float cameraSensitivityY = 0.1f;
 
@@ -50,15 +50,16 @@ public class UI_PlayerController : MonoBehaviour
 
         delay -= Time.deltaTime;
 
-        //if(currentSpeed != targetedSpeed)
-        //{
-        //    currentSpeed = Mathf.Lerp(currentSpeed, targetedSpeed, 0.1f * Time.deltaTime);
-        //}
+        if (currentSpeed != targetedSpeed)
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, targetedSpeed, speedBlendTime * Time.deltaTime);
+            animator.SetFloat("Speed", currentSpeed * 2f);
+        }
 
 #if UNITY_EDITOR
 
         MouseInput();
-//#else
+#else
         if (Input.touchCount > 0)
         {
             for (int i = 0; i < Input.touchCount; i++)
@@ -107,7 +108,7 @@ public class UI_PlayerController : MonoBehaviour
 
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0), 0.3f);
 
-            currentSpeed = Direction().magnitude;
+            targetedSpeed = Direction().magnitude / leftAnalog.GetComponent<RectTransform>().rect.width;
 
             WalkAnimation();
         }
@@ -128,7 +129,7 @@ public class UI_PlayerController : MonoBehaviour
             {
                 leftAnalog.gameObject.SetActive(false);
                 leftZone.gameObject.SetActive(false);
-                currentSpeed = 0f;
+                targetedSpeed = 0f;
 
                 WalkAnimation();
             }
@@ -139,7 +140,7 @@ public class UI_PlayerController : MonoBehaviour
     {
         animator.SetFloat("Horizontal", Direction().x);
         animator.SetFloat("Vertical", Direction().y);
-        animator.SetFloat("Speed", currentSpeed / leftAnalog.GetComponent<RectTransform>().rect.width * 2f);
+        animator.SetFloat("Speed", currentSpeed * 2f);
     }
 
     private Vector2 Direction()
@@ -153,6 +154,7 @@ public class UI_PlayerController : MonoBehaviour
 
     private void UpdateConfig(ConfigResponse response)
     {
+        speedBlendTime = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
         cameraSensitivityX = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
         cameraSensitivityY = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
     }
@@ -250,7 +252,7 @@ public class UI_PlayerController : MonoBehaviour
                 leftZone.position = Vector3.Lerp(leftZone.position, leftZone.position + (leftAnalog.position - leftZone.position) * 0.5f, 0.3f);
             }
 
-            currentSpeed = Direction().magnitude;
+            targetedSpeed = Direction().magnitude / leftAnalog.GetComponent<RectTransform>().rect.width;
 
             WalkAnimation();
         }
@@ -267,7 +269,7 @@ public class UI_PlayerController : MonoBehaviour
     {
         leftAnalog.gameObject.SetActive(false);
         leftZone.gameObject.SetActive(false);
-        currentSpeed = 0f;
+        targetedSpeed = 0f;
 
         WalkAnimation();
 
