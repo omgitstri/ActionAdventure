@@ -50,10 +50,10 @@ public class UI_PlayerController : MonoBehaviour
 
         delay -= Time.deltaTime;
 
-        if(currentSpeed != targetedSpeed)
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, targetedSpeed, 0.1f * Time.deltaTime);
-        }
+        //if(currentSpeed != targetedSpeed)
+        //{
+        //    currentSpeed = Mathf.Lerp(currentSpeed, targetedSpeed, 0.1f * Time.deltaTime);
+        //}
 
 #if UNITY_EDITOR
 
