@@ -21,13 +21,13 @@ public class UI_PlayerController : MonoBehaviour
     private int leftID = -1;
     private int rightID = -1;
 
-    private float speed = 0f;
+    private float currentSpeed = 0f;
+    private float targetedSpeed = 0f;
+
+    //config
+    private float speedBlend = 0.1f;
     private float cameraSensitivityX = 3f;
     private float cameraSensitivityY = 0.1f;
-
-    struct userAttributes { };
-    struct appAttributes { };
-
 
     private void Awake()
     {
@@ -40,7 +40,6 @@ public class UI_PlayerController : MonoBehaviour
         FetchConfig();
     }
 
-
     void Update()
     {
         if (Input.touchCount >= 5 && delay < 0)
@@ -51,10 +50,15 @@ public class UI_PlayerController : MonoBehaviour
 
         delay -= Time.deltaTime;
 
+        if(currentSpeed != targetedSpeed)
+        {
+            currentSpeed = Mathf.Lerp(currentSpeed, targetedSpeed, 0.1f * Time.deltaTime);
+        }
+
 #if UNITY_EDITOR
 
         MouseInput();
-#else
+//#else
         if (Input.touchCount > 0)
         {
             for (int i = 0; i < Input.touchCount; i++)
@@ -75,22 +79,15 @@ public class UI_PlayerController : MonoBehaviour
 
             if (screenPosition < 0.5f)
             {
-                if (leftID == -1)
-                {
-                    leftID = _touch.fingerId;
-                    leftAnalog.gameObject.SetActive(true);
-                    leftZone.gameObject.SetActive(true);
-                    leftAnalog.transform.position = _touch.position;
+                leftAnalog.gameObject.SetActive(true);
+                leftZone.gameObject.SetActive(true);
+                leftAnalog.transform.position = _touch.position;
 
-                    leftZone.transform.position = _touch.position - Vector2.up * leftAnalog.GetComponent<RectTransform>().rect.height * 0.5f;
-                }
+                leftZone.transform.position = _touch.position - Vector2.up * leftAnalog.GetComponent<RectTransform>().rect.height;
             }
             else if (screenPosition > 0.5f)
             {
-                if (rightID == -1)
-                {
-                    rightID = _touch.fingerId;
-                }
+
             }
         }
     }
@@ -103,24 +100,25 @@ public class UI_PlayerController : MonoBehaviour
         {
             leftAnalog.position = _touch.position;
 
-            if ((leftAnalog.position - leftZone.position).sqrMagnitude > 40 * 40)
+            if ((leftAnalog.position - leftZone.position).sqrMagnitude > leftZone.GetComponent<RectTransform>().rect.height * leftZone.GetComponent<RectTransform>().rect.height)
             {
-                leftZone.position += (leftAnalog.position - leftZone.position) * 0.2f;
+                leftZone.position = Vector3.Lerp(leftZone.position, leftZone.position + (leftAnalog.position - leftZone.position) * 0.5f, 0.3f);
             }
-            transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
-            speed = Direction().magnitude;
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0), 0.3f);
+
+            currentSpeed = Direction().magnitude;
 
             WalkAnimation();
         }
 
         if (screenPosition > 0.5f)
         {
-
             thirdPerson.m_XAxis.Value += _touch.deltaPosition.x * Time.deltaTime * cameraSensitivityX;
             thirdPerson.m_YAxis.Value -= _touch.deltaPosition.y * Time.deltaTime * cameraSensitivityY;
         }
     }
+
     public void TouchEnd(Touch _touch)
     {
 
@@ -130,15 +128,9 @@ public class UI_PlayerController : MonoBehaviour
             {
                 leftAnalog.gameObject.SetActive(false);
                 leftZone.gameObject.SetActive(false);
-                speed = 0f;
+                currentSpeed = 0f;
 
                 WalkAnimation();
-
-                leftID = -1;
-            }
-            else
-            {
-                rightID = -1;
             }
         }
     }
@@ -146,16 +138,18 @@ public class UI_PlayerController : MonoBehaviour
     private void WalkAnimation()
     {
         animator.SetFloat("Horizontal", Direction().x);
-        animator.SetFloat("Vertical", Direction().z);
-        animator.SetFloat("Speed", speed * 2f);
+        animator.SetFloat("Vertical", Direction().y);
+        animator.SetFloat("Speed", currentSpeed / leftAnalog.GetComponent<RectTransform>().rect.width * 2f);
     }
 
-    private Vector3 Direction()
+    private Vector2 Direction()
     {
-        var dir = (leftAnalog.position - leftZone.position).normalized;
-
-        return new Vector3(dir.x, 0, dir.y);
+        return (leftAnalog.position - leftZone.position);
     }
+
+    #region RemoteConfig
+    struct userAttributes { };
+    struct appAttributes { };
 
     private void UpdateConfig(ConfigResponse response)
     {
@@ -167,9 +161,9 @@ public class UI_PlayerController : MonoBehaviour
     {
         ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
     }
+    #endregion
 
-
-    #region MobileDebug
+    #region Debug
     private bool toggleDebug = false;
     [SerializeField] private GameObject debugMenu = null;
     float delay = 0;
@@ -187,8 +181,6 @@ public class UI_PlayerController : MonoBehaviour
             toggleDebug = true;
         }
     }
-
-
     #endregion
 
     #region PC Debug
@@ -196,19 +188,12 @@ public class UI_PlayerController : MonoBehaviour
     Vector3 deltaPos = Vector3.zero;
     Vector3 currentPos = Vector3.zero;
 
-
     private void MouseInput()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetMouseButtonDown(1))
         {
-            thirdPerson.m_XAxis.Value -= 1 * Time.deltaTime * 20;
+            ToggleDebug();
         }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            thirdPerson.m_XAxis.Value += 1 * Time.deltaTime * 20;
-        }
-
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -235,7 +220,7 @@ public class UI_PlayerController : MonoBehaviour
         if (screenNormal < 0.5f)
         {
             leftAnalog.transform.position = currentPos;
-            leftZone.transform.position = currentPos - Vector3.up * leftAnalog.GetComponent<RectTransform>().rect.height * 0.5f;
+            leftZone.transform.position = currentPos - Vector3.up * leftAnalog.GetComponent<RectTransform>().rect.height;
 
             leftAnalog.gameObject.SetActive(true);
             leftZone.gameObject.SetActive(true);
@@ -251,26 +236,28 @@ public class UI_PlayerController : MonoBehaviour
     private void MouseDrag()
     {
         deltaPos = currentPos - Input.mousePosition;
-        if (speed != 0f)
+        if (currentSpeed != 0f)
         {
-            transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0), 0.1f);
         }
 
         if (leftID == 0)
         {
             leftAnalog.position = Input.mousePosition;
-            if ((leftAnalog.position - leftZone.position).sqrMagnitude > 40 * 40)
+
+            if ((leftAnalog.position - leftZone.position).sqrMagnitude > leftAnalog.GetComponent<RectTransform>().rect.height * leftAnalog.GetComponent<RectTransform>().rect.height)
             {
-                leftZone.position += (leftAnalog.position - leftZone.position) * 0.2f;
+                leftZone.position = Vector3.Lerp(leftZone.position, leftZone.position + (leftAnalog.position - leftZone.position) * 0.5f, 0.3f);
             }
-            speed = Direction().magnitude;
+
+            currentSpeed = Direction().magnitude;
 
             WalkAnimation();
         }
         if (rightID == 0)
         {
-            thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * 10f;
-            thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * 0.5f;
+            thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * cameraSensitivityX;
+            thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * cameraSensitivityY;
         }
 
         currentPos = Input.mousePosition;
@@ -280,7 +267,7 @@ public class UI_PlayerController : MonoBehaviour
     {
         leftAnalog.gameObject.SetActive(false);
         leftZone.gameObject.SetActive(false);
-        speed = 0f;
+        currentSpeed = 0f;
 
         WalkAnimation();
 

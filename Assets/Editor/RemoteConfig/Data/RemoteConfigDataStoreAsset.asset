@@ -14,26 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - metadata:
-      entityId: e0068d75-3149-42ee-9db2-0b633f23a9f6
+      entityId: df642a8f-c441-4e09-a6fa-519d9602b31a
     rs:
       key: cameraSensitivityX
       type: float
       value: 4
   - metadata:
-      entityId: eb842e40-a4c1-479f-9184-e79ff17e8feb
+      entityId: 9af396c6-4672-4b4c-a273-34c0a20c08e2
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   rsLastCachedKeyList:
   - metadata:
-      entityId: e0068d75-3149-42ee-9db2-0b633f23a9f6
+      entityId: df642a8f-c441-4e09-a6fa-519d9602b31a
     rs:
       key: cameraSensitivityX
       type: float
       value: 4
   - metadata:
-      entityId: eb842e40-a4c1-479f-9184-e79ff17e8feb
+      entityId: 9af396c6-4672-4b4c-a273-34c0a20c08e2
     rs:
       key: cameraSensitivityY
       type: float
@@ -43,16 +43,16 @@ MonoBehaviour:
   environments:
   - id: 18888594-de98-40a6-ac15-23c6aced8fef
     appId: 
-    name: Release (Default)
+    name: Release
     description: 
     createdAt: 2020-06-05T23:42:16Z
-    updatedAt: 2020-06-06T00:19:17Z
+    updatedAt: 2020-06-06T00:20:43Z
   - id: 022da645-9d8a-4b95-af46-aef20cd8bce8
     appId: 
-    name: Development
+    name: Development (Default)
     description: 
     createdAt: 2020-06-06T00:02:43Z
-    updatedAt: 2020-06-06T00:19:17Z
+    updatedAt: 2020-06-06T00:20:43Z
   rulesList: []
   lastCachedRulesList: []
   addedRulesIDs: []
