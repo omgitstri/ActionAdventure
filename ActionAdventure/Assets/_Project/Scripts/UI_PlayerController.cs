@@ -113,6 +113,11 @@ public class UI_PlayerController : MonoBehaviour
                 else
                 {
                     tapCount++;
+
+                    if(tapCount >= 2)
+                    {
+                        //do this
+                    }
                 }
             }
         }
@@ -273,6 +278,11 @@ public class UI_PlayerController : MonoBehaviour
             else
             {
                 tapCount++;
+
+                if (tapCount >= 2)
+                {
+                    //do this
+                }
             }
         }
     }
