@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  rsKeyList:
+  - metadata:
+      entityId: e0068d75-3149-42ee-9db2-0b633f23a9f6
+    rs:
+      key: cameraSensitivityX
+      type: float
+      value: 4
+  - metadata:
+      entityId: eb842e40-a4c1-479f-9184-e79ff17e8feb
+    rs:
+      key: cameraSensitivityY
+      type: float
+      value: 0.05
+  rsLastCachedKeyList:
+  - metadata:
+      entityId: e0068d75-3149-42ee-9db2-0b633f23a9f6
+    rs:
+      key: cameraSensitivityX
+      type: float
+      value: 4.000000
+  - metadata:
+      entityId: eb842e40-a4c1-479f-9184-e79ff17e8feb
+    rs:
+      key: cameraSensitivityY
+      type: float
+      value: 0.050000
+  configId: ed481a7f-5425-4ffc-ae8c-8ed875b5f224
+  currentEnvironmentId: 022da645-9d8a-4b95-af46-aef20cd8bce8
+  environments:
+  - id: 18888594-de98-40a6-ac15-23c6aced8fef
+    appId: 
+    name: Release (Default)
+    description: 
+    createdAt: 2020-06-05T23:42:16Z
+    updatedAt: 2020-06-06T00:19:17Z
+  - id: 022da645-9d8a-4b95-af46-aef20cd8bce8
+    appId: 
+    name: Development
+    description: 
+    createdAt: 2020-06-06T00:02:43Z
+    updatedAt: 2020-06-06T00:19:17Z
+  rulesList: []
+  lastCachedRulesList: []
+  addedRulesIDs: []
+  updatedRulesIDs: []
+  deletedRulesIDs: []

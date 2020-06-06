@@ -7,8 +7,7 @@ public class UIControl : MonoBehaviour
 {
     [SerializeField] Transform leftZone = null;
     [SerializeField] Transform leftAnalog = null;
-    [SerializeField] private List<int> leftScreenTouchID = new List<int>();
-    [SerializeField] private List<int> rightScreenTouchID = new List<int>();
+
     [SerializeField] private CinemachineFreeLook vcam = null;
 
     int leftID = -1;
@@ -26,7 +25,6 @@ public class UIControl : MonoBehaviour
             leftZone.transform.position = currentPos - Vector3.up * 20;
             leftAnalog.gameObject.SetActive(true);
             leftZone.gameObject.SetActive(true);
-
 
             leftID = 0;
         }
@@ -46,6 +44,7 @@ public class UIControl : MonoBehaviour
     private void MouseDrag()
     {
         deltaPos = currentPos - Input.mousePosition;
+        transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
         if (rightID == 0)
         {
@@ -60,7 +59,8 @@ public class UIControl : MonoBehaviour
                 leftZone.position += (leftAnalog.position - leftZone.position) * 0.5f;
             }
 
-            transform.position += Direction() * 3 * Time.deltaTime;
+            transform.position += transform.forward * Direction().z * 3 * Time.deltaTime;
+            transform.position += transform.right * Direction().x * 3 * Time.deltaTime;
         }
 
 
@@ -78,6 +78,19 @@ public class UIControl : MonoBehaviour
 
     void Update()
     {
+#if UNITY_EDITOR
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            vcam.m_XAxis.Value -= 1 * Time.deltaTime * 20;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            vcam.m_XAxis.Value += 1 * Time.deltaTime * 20;
+        }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             MouseDown();
@@ -92,56 +105,83 @@ public class UIControl : MonoBehaviour
         {
             MouseUp();
         }
-
-
-        //DebugTouch();
-
-        leftScreenTouchID.Clear();
-        rightScreenTouchID.Clear();
-
+#else
         for (int i = 0; i < Input.touches.Length; i++)
         {
-            if (Camera.main.ScreenToViewportPoint(Input.GetTouch(i).position).x < 0.5f || Camera.main.ScreenToViewportPoint(Input.mousePosition).x < 0.5f)
+            TouchBegin(i);
+            TouchEnd(i);
+            TouchActions();
+        }
+#endif
+    }
+
+    public void TouchBegin(int _i)
+    {
+        if (Input.GetTouch(_i).phase == TouchPhase.Began)
+        {
+            if (Camera.main.ScreenToViewportPoint(Input.GetTouch(_i).position).x < 0.5f)
             {
-                leftScreenTouchID.Add(i);
+                if (leftID == -1)
+                {
+                    leftID = Input.GetTouch(_i).fingerId;
+                    leftAnalog.gameObject.SetActive(true);
+                    leftZone.gameObject.SetActive(true);
+                    leftAnalog.transform.position = Input.GetTouch(_i).position;
+                    leftZone.transform.position = Input.GetTouch(_i).position - Vector2.up * 40;
+                }
             }
-            else if (Camera.main.ScreenToViewportPoint(Input.GetTouch(i).position).x > 0.5f || Camera.main.ScreenToViewportPoint(Input.mousePosition).x > 0.5f)
+            else if (Camera.main.ScreenToViewportPoint(Input.GetTouch(_i).position).x > 0.5f)
             {
-                rightScreenTouchID.Add(i);
+                if (rightID == -1)
+                {
+                    rightID = Input.GetTouch(_i).fingerId;
+                }
             }
         }
     }
 
-    public void DebugTouch()
+    public void TouchEnd(int _i)
     {
-        if (leftScreenTouchID.Count > 0)
+
+        if (Input.GetTouch(_i).phase == TouchPhase.Ended)
         {
-            leftID = leftScreenTouchID[0];
+
+            if (Input.GetTouch(_i).fingerId == leftID)
+            {
+                leftAnalog.gameObject.SetActive(false);
+                leftZone.gameObject.SetActive(false);
+
+                leftID = -1;
+            }
+
+            if (Input.GetTouch(_i).fingerId == rightID)
+            {
+                rightID = -1;
+            }
         }
-        else
+    }
+
+    public void TouchActions()
+    {
+        if (leftID != -1)
         {
-            leftID = -1;
+            leftAnalog.position = Input.GetTouch(leftID).position;
+
+            if ((leftAnalog.position - leftZone.position).sqrMagnitude > 20 * 20)
+            {
+                leftZone.position += (leftAnalog.position - leftZone.position) * 0.5f;
+            }
+
+            transform.position += transform.forward * Direction().z * 3 * Time.deltaTime;
+            transform.position += transform.right * Direction().x * 3 * Time.deltaTime;
         }
 
-        if (rightScreenTouchID.Count > 0)
+        if (rightID != -1)
         {
-            rightID = rightScreenTouchID[0];
+            transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
-#if UNITY_EDITOR
-            vcam.m_XAxis.Value += deltaPos.x * Time.deltaTime * 10f;
-            vcam.m_YAxis.Value += deltaPos.y * Time.deltaTime * 0.5f;
-
-#else
-
-#endif
-            //Camera.main.transform.rotation = Quaternion.Euler(
-            //    Camera.main.transform.rotation.eulerAngles.x + Input.GetTouch(rightID).deltaPosition.y * Time.deltaTime, 
-            //    Camera.main.transform.rotation.eulerAngles.y + Input.GetTouch(rightID).deltaPosition.x * Time.deltaTime, 
-            //    Camera.main.transform.rotation.eulerAngles.z);
-        }
-        else
-        {
-            rightID = -1;
+            vcam.m_XAxis.Value += Input.GetTouch(rightID).deltaPosition.x * Time.deltaTime * 20f;
+            vcam.m_YAxis.Value -= Input.GetTouch(rightID).deltaPosition.y * Time.deltaTime * 0.5f;
         }
     }
 }
