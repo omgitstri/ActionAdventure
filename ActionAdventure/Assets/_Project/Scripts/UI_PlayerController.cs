@@ -21,13 +21,18 @@ public class UI_PlayerController : MonoBehaviour
     private int leftID = -1;
     private int rightID = -1;
 
+    private int tapCount = 0;
+
     private float currentSpeed = 0f;
     private float targetedSpeed = 0f;
+    private float doubleTapTimer = 0f;
 
     //config
     private float speedBlendTime = 0.1f;
     private float cameraSensitivityX = 3f;
     private float cameraSensitivityY = 0.1f;
+    private float doubleTapThreshold = 0.5f;
+
 
     private void Awake()
     {
@@ -55,6 +60,18 @@ public class UI_PlayerController : MonoBehaviour
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetedSpeed, speedBlendTime * Time.deltaTime);
             animator.SetFloat("Speed", currentSpeed * 2f);
         }
+
+        if (doubleTapTimer >= 0 && doubleTapTimer < doubleTapThreshold)
+        {
+            doubleTapTimer += Time.deltaTime;
+        }
+        else
+        {
+            tapCount = 0;
+            doubleTapTimer = -1f;
+        }
+        counter.text = tapCount.ToString();
+
 
 #if UNITY_EDITOR
 
@@ -88,7 +105,15 @@ public class UI_PlayerController : MonoBehaviour
             }
             else if (screenPosition > 0.5f)
             {
-
+                if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
+                {
+                    doubleTapTimer = 0f;
+                    tapCount = 1;
+                }
+                else
+                {
+                    tapCount++;
+                }
             }
         }
     }
@@ -133,6 +158,10 @@ public class UI_PlayerController : MonoBehaviour
 
                 WalkAnimation();
             }
+            else
+            {
+
+            }
         }
     }
 
@@ -170,8 +199,11 @@ public class UI_PlayerController : MonoBehaviour
     [SerializeField] private GameObject debugMenu = null;
     float delay = 0;
 
+    [SerializeField] UnityEngine.UI.Text counter = null;
+
     private void ToggleDebug()
     {
+
         if (toggleDebug)
         {
             debugMenu.SetActive(false);
@@ -232,6 +264,16 @@ public class UI_PlayerController : MonoBehaviour
         else if (screenNormal > 0.5f)
         {
             rightID = 0;
+
+            if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
+            {
+                doubleTapTimer = 0f;
+                tapCount = 1;
+            }
+            else
+            {
+                tapCount++;
+            }
         }
     }
 
@@ -275,6 +317,7 @@ public class UI_PlayerController : MonoBehaviour
 
         leftID = -1;
         rightID = -1;
+
     }
     #endregion
 }

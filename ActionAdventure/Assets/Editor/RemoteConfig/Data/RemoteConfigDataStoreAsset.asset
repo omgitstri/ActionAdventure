@@ -36,7 +36,7 @@ MonoBehaviour:
     rs:
       key: enemyCount
       type: int
-      value: 3
+      value: 1
   rsLastCachedKeyList:
   - metadata:
       entityId: 12921a19-5d61-437e-b651-cd29c0df9187
@@ -61,7 +61,7 @@ MonoBehaviour:
     rs:
       key: enemyCount
       type: int
-      value: 3
+      value: 1
   configId: ed481a7f-5425-4ffc-ae8c-8ed875b5f224
   currentEnvironmentId: 022da645-9d8a-4b95-af46-aef20cd8bce8
   environments:
