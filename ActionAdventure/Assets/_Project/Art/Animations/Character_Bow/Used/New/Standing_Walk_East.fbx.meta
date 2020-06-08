@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 06b001d25b1cda24f811eac1e904f56c
+guid: e711618d6fc3f40478b02d9a80ca2b34
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Standing Walk Forward
+    second: Armed Walk East
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,13 +35,13 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Walk Forward
+      name: Armed Walk East
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
       lastFrame: 36
       wrapMode: 0
-      orientationOffsetY: 1.27
+      orientationOffsetY: -88.73
       level: 0
       cycleOffset: 0
       loop: 0

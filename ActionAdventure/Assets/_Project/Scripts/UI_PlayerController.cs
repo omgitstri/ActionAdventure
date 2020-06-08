@@ -44,7 +44,6 @@ public class UI_PlayerController : MonoBehaviour
         ConfigManager.FetchCompleted += UpdateConfig;
         FetchConfig();
     }
-
     void Update()
     {
         if (Input.touchCount >= 5 && delay < 0)
@@ -52,8 +51,20 @@ public class UI_PlayerController : MonoBehaviour
             ToggleDebug();
             delay = 3f;
         }
-
         delay -= Time.deltaTime;
+        counter.text = tapCount.ToString();
+
+        if (EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, 10f))
+        {
+            overShoulder.enabled = false;
+            animator.SetBool("Armed", false);
+            //animator.SetBool("Draw", false);
+        }
+        else
+        {
+            animator.SetBool("Armed", true);
+            //animator.SetBool("Draw", true);
+        }
 
         if (currentSpeed != targetedSpeed)
         {
@@ -61,22 +72,11 @@ public class UI_PlayerController : MonoBehaviour
             animator.SetFloat("Speed", currentSpeed * 2f);
         }
 
-        if (doubleTapTimer >= 0 && doubleTapTimer < doubleTapThreshold)
-        {
-            doubleTapTimer += Time.deltaTime;
-        }
-        else
-        {
-            tapCount = 0;
-            doubleTapTimer = -1f;
-        }
-        counter.text = tapCount.ToString();
-
-
 #if UNITY_EDITOR
-
         MouseInput();
+        DoubleTapTimer();
 #else
+        DoubleTapTimer();
         if (Input.touchCount > 0)
         {
             for (int i = 0; i < Input.touchCount; i++)
@@ -105,20 +105,7 @@ public class UI_PlayerController : MonoBehaviour
             }
             else if (screenPosition > 0.5f)
             {
-                if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
-                {
-                    doubleTapTimer = 0f;
-                    tapCount = 1;
-                }
-                else
-                {
-                    tapCount++;
-
-                    if(tapCount >= 2)
-                    {
-                        //do this
-                    }
-                }
+                StartDoubleTapTracker();
             }
         }
     }
@@ -170,6 +157,61 @@ public class UI_PlayerController : MonoBehaviour
         }
     }
 
+    private void DoubleTapTimer()
+    {
+        if (doubleTapTimer >= 0 && doubleTapTimer < doubleTapThreshold)
+        {
+            doubleTapTimer += Time.deltaTime;
+        }
+        else
+        {
+            tapCount = 0;
+            doubleTapTimer = -1f;
+        }
+    }
+
+    private void StartDoubleTapTracker()
+    {
+        if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
+        {
+            doubleTapTimer = 0f;
+            tapCount = 1;
+        }
+        else
+        {
+            tapCount++;
+
+            if (tapCount >= 2)
+            {
+                if (animator.GetBool("Draw"))
+                {
+                    animator.SetBool("Draw", false);
+                }
+                else
+                {
+                    animator.SetBool("Draw", true);
+                }
+                //if (animator.GetBool("Armed"))
+                //{
+                //    animator.SetBool("Armed", false);
+                //    //animator.SetBool("Draw", false);
+
+                //    //thirdPerson.enabled = true;
+                //    //overShoulder.enabled = false;
+                //}
+                //else
+                //{
+                //    animator.SetBool("Armed", true);
+                //    //animator.SetBool("Draw", true);
+                //    //thirdPerson.enabled = true;
+                //    //overShoulder.enabled = false;
+                //}
+            }
+        }
+
+    }
+
+
     private void WalkAnimation()
     {
         animator.SetFloat("Horizontal", Direction().x);
@@ -188,9 +230,10 @@ public class UI_PlayerController : MonoBehaviour
 
     private void UpdateConfig(ConfigResponse response)
     {
-        speedBlendTime = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
-        cameraSensitivityX = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
-        cameraSensitivityY = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
+        doubleTapThreshold  = ConfigManager.appConfig.GetFloat(nameof(doubleTapThreshold));
+        speedBlendTime      = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
+        cameraSensitivityX  = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
+        cameraSensitivityY  = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
     }
 
     public void FetchConfig()
@@ -270,20 +313,7 @@ public class UI_PlayerController : MonoBehaviour
         {
             rightID = 0;
 
-            if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
-            {
-                doubleTapTimer = 0f;
-                tapCount = 1;
-            }
-            else
-            {
-                tapCount++;
-
-                if (tapCount >= 2)
-                {
-                    //do this
-                }
-            }
+            StartDoubleTapTracker();
         }
     }
 

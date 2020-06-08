@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: a5b9abad90eca4f478700b1bf2b9fc3d
+guid: 2a1fa88164252a14aacdf8ebb816bfe9
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Standing Run Forward
+    second: Armed Run South
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,13 +35,13 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Run Forward
+      name: Armed Run South
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
-      orientationOffsetY: 4.07
+      orientationOffsetY: 184.07
       level: 0
       cycleOffset: 0
       loop: 0

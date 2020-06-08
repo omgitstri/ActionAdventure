@@ -14,54 +14,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - metadata:
-      entityId: 12921a19-5d61-437e-b651-cd29c0df9187
+      entityId: 49ae689a-e483-4483-bd65-82641f0d30dd
     rs:
       key: cameraSensitivityX
       type: float
       value: 4
   - metadata:
-      entityId: eeaec8c2-ae04-4630-bd50-b4ab6458dc26
+      entityId: 68a69a29-9d08-4ad0-a925-a990ed8473cb
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   - metadata:
-      entityId: f1aab29e-b22a-4d69-9819-4dcaeead7073
+      entityId: 6160f925-8156-4be8-9ab0-954b892c1c00
     rs:
       key: speedBlendTime
       type: float
       value: 5
   - metadata:
-      entityId: 90fe51a4-3af8-4242-9481-26b3d6948456
+      entityId: 7dd1b66b-4c06-4c34-a6fa-3b3ba31ba125
     rs:
       key: enemyCount
       type: int
-      value: 1
+      value: 5
+  - metadata:
+      entityId: 7d505f1f-bd28-4b64-9965-8fb9eb7abde7
+    rs:
+      key: doubleTapThreshold
+      type: float
+      value: 0.25
+  - metadata:
+      entityId: c38857ed-888a-44b9-ae00-000ce052f2cc
+    rs:
+      key: aimSensitivityX
+      type: float
+      value: 2
+  - metadata:
+      entityId: 2e9753db-a59b-4bec-9369-01de749843cb
+    rs:
+      key: aimSensitivityY
+      type: float
+      value: 0.1
   rsLastCachedKeyList:
   - metadata:
-      entityId: 12921a19-5d61-437e-b651-cd29c0df9187
+      entityId: 49ae689a-e483-4483-bd65-82641f0d30dd
     rs:
       key: cameraSensitivityX
       type: float
       value: 4
   - metadata:
-      entityId: eeaec8c2-ae04-4630-bd50-b4ab6458dc26
+      entityId: 68a69a29-9d08-4ad0-a925-a990ed8473cb
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   - metadata:
-      entityId: f1aab29e-b22a-4d69-9819-4dcaeead7073
+      entityId: 6160f925-8156-4be8-9ab0-954b892c1c00
     rs:
       key: speedBlendTime
       type: float
       value: 5
   - metadata:
-      entityId: 90fe51a4-3af8-4242-9481-26b3d6948456
+      entityId: 7dd1b66b-4c06-4c34-a6fa-3b3ba31ba125
     rs:
       key: enemyCount
       type: int
-      value: 1
+      value: 5
+  - metadata:
+      entityId: 7d505f1f-bd28-4b64-9965-8fb9eb7abde7
+    rs:
+      key: doubleTapThreshold
+      type: float
+      value: 0.25
+  - metadata:
+      entityId: c38857ed-888a-44b9-ae00-000ce052f2cc
+    rs:
+      key: aimSensitivityX
+      type: float
+      value: 2
+  - metadata:
+      entityId: 2e9753db-a59b-4bec-9369-01de749843cb
+    rs:
+      key: aimSensitivityY
+      type: float
+      value: 0.1
   configId: ed481a7f-5425-4ffc-ae8c-8ed875b5f224
   currentEnvironmentId: 022da645-9d8a-4b95-af46-aef20cd8bce8
   environments:

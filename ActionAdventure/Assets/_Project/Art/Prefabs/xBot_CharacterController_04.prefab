@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &113461533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 113461534}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &113461534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113461533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8042807546878739016}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &84410068239721075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4158,6 +4188,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _Update:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3091578308597986493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,7 +5077,7 @@ GameObject:
   - component: {fileID: 3091578308266065438}
   - component: {fileID: 3091578308266065504}
   - component: {fileID: 3091578308266065507}
-  - component: {fileID: 3091578308266065506}
+  - component: {fileID: 200551701386729691}
   m_Layer: 0
   m_Name: xBot_CharacterController_04
   m_TagString: Untagged
@@ -5067,6 +5100,7 @@ Transform:
   - {fileID: 6443934123811262314}
   - {fileID: 7523008327278289102}
   - {fileID: 3091578307574644605}
+  - {fileID: 113461534}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5080,7 +5114,7 @@ Animator:
   m_GameObject: {fileID: 6469019547320922203}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7dd0e510aec06584d9ee765e9e373175, type: 3}
-  m_Controller: {fileID: 9100000, guid: 27987a32f9626124182222263d77f40b, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd38ec4442d385a419991c4c5eb86f81, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -5213,7 +5247,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &3091578308266065506
+--- !u!114 &200551701386729691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5222,12 +5256,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6469019547320922203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12419b526d87b242a1109ae73cbb352, type: 3}
+  m_Script: {fileID: 11500000, guid: b664707e5fae896479abeea63bb6ef40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftZone: {fileID: 0}
+  leftAnalog: {fileID: 0}
   thirdPerson: {fileID: 0}
   overShoulder: {fileID: 0}
   spine: {fileID: 3091578308597986490}
+  debugMenu: {fileID: 0}
+  counter: {fileID: 0}
 --- !u!1 &6484943524168336446
 GameObject:
   m_ObjectHideFlags: 0

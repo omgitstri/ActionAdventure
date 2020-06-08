@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: c9d7f8902b295214caf3ed2ce1898447
+guid: 8381148ef82e0cf4ea0f5ab2912970e2
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Standing Idle 01
+    second: Armed Walk North
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,13 +35,13 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Idle 01
+      name: Armed Walk North
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 153
+      lastFrame: 36
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 1.27
       level: 0
       cycleOffset: 0
       loop: 0

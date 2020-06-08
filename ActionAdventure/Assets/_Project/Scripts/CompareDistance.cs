@@ -23,4 +23,8 @@ public class CompareDistance : MonoBehaviour
             GetComponent<MeshRenderer>().material.SetColor("_BaseColor", Color.red);
         }
     }
+    private void OnDestroy()
+    {
+        EntityTracker_Enemy.Instance.EnemyList.Remove(this.transform);
+    }
 }
