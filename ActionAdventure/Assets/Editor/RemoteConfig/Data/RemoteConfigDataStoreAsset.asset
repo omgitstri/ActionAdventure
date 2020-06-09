@@ -14,90 +14,114 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - metadata:
-      entityId: 49ae689a-e483-4483-bd65-82641f0d30dd
+      entityId: 9813b15c-12ca-4584-95aa-4b70a200e85b
+    rs:
+      key: aimSensitivityX
+      type: float
+      value: 10
+  - metadata:
+      entityId: b5f2eee4-7428-4fc3-ae6e-ca0cbda2afb3
+    rs:
+      key: aimSensitivityY
+      type: float
+      value: 0.02
+  - metadata:
+      entityId: 4f3cb050-bef3-427a-a574-6f533cd58cc2
     rs:
       key: cameraSensitivityX
       type: float
-      value: 4
+      value: 6
   - metadata:
-      entityId: 68a69a29-9d08-4ad0-a925-a990ed8473cb
+      entityId: b65820e1-6c6a-43b3-b02f-177159260c57
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   - metadata:
-      entityId: 6160f925-8156-4be8-9ab0-954b892c1c00
+      entityId: 00825cee-5a90-4b14-bd3e-0ce80ee5e375
     rs:
       key: speedBlendTime
       type: float
       value: 5
   - metadata:
-      entityId: 7dd1b66b-4c06-4c34-a6fa-3b3ba31ba125
+      entityId: 9818fd5b-c2bf-4f1c-9806-b3b9eefd20ec
     rs:
       key: enemyCount
       type: int
-      value: 5
+      value: 1
   - metadata:
-      entityId: 7d505f1f-bd28-4b64-9965-8fb9eb7abde7
+      entityId: f43d322a-23d9-4f65-9bf1-2654de0fc436
     rs:
       key: doubleTapThreshold
       type: float
       value: 0.25
   - metadata:
-      entityId: c38857ed-888a-44b9-ae00-000ce052f2cc
+      entityId: d8dabfa3-fd7a-4ad3-8104-0d97c6b4c976
     rs:
-      key: aimSensitivityX
+      key: distanceMelee
       type: float
-      value: 2
+      value: 10
   - metadata:
-      entityId: 2e9753db-a59b-4bec-9369-01de749843cb
+      entityId: 207066bc-7e85-4a7b-919d-cae57e4d34d7
     rs:
-      key: aimSensitivityY
+      key: distanceRange
       type: float
-      value: 0.1
+      value: 20
   rsLastCachedKeyList:
   - metadata:
-      entityId: 49ae689a-e483-4483-bd65-82641f0d30dd
-    rs:
-      key: cameraSensitivityX
-      type: float
-      value: 4
-  - metadata:
-      entityId: 68a69a29-9d08-4ad0-a925-a990ed8473cb
-    rs:
-      key: cameraSensitivityY
-      type: float
-      value: 0.05
-  - metadata:
-      entityId: 6160f925-8156-4be8-9ab0-954b892c1c00
-    rs:
-      key: speedBlendTime
-      type: float
-      value: 5
-  - metadata:
-      entityId: 7dd1b66b-4c06-4c34-a6fa-3b3ba31ba125
-    rs:
-      key: enemyCount
-      type: int
-      value: 5
-  - metadata:
-      entityId: 7d505f1f-bd28-4b64-9965-8fb9eb7abde7
-    rs:
-      key: doubleTapThreshold
-      type: float
-      value: 0.25
-  - metadata:
-      entityId: c38857ed-888a-44b9-ae00-000ce052f2cc
+      entityId: 9813b15c-12ca-4584-95aa-4b70a200e85b
     rs:
       key: aimSensitivityX
       type: float
-      value: 2
+      value: 10.000000
   - metadata:
-      entityId: 2e9753db-a59b-4bec-9369-01de749843cb
+      entityId: b5f2eee4-7428-4fc3-ae6e-ca0cbda2afb3
     rs:
       key: aimSensitivityY
       type: float
-      value: 0.1
+      value: 0.020000
+  - metadata:
+      entityId: 4f3cb050-bef3-427a-a574-6f533cd58cc2
+    rs:
+      key: cameraSensitivityX
+      type: float
+      value: 6.000000
+  - metadata:
+      entityId: b65820e1-6c6a-43b3-b02f-177159260c57
+    rs:
+      key: cameraSensitivityY
+      type: float
+      value: 0.050000
+  - metadata:
+      entityId: 00825cee-5a90-4b14-bd3e-0ce80ee5e375
+    rs:
+      key: speedBlendTime
+      type: float
+      value: 5.000000
+  - metadata:
+      entityId: 9818fd5b-c2bf-4f1c-9806-b3b9eefd20ec
+    rs:
+      key: enemyCount
+      type: int
+      value: 1
+  - metadata:
+      entityId: f43d322a-23d9-4f65-9bf1-2654de0fc436
+    rs:
+      key: doubleTapThreshold
+      type: float
+      value: 0.250000
+  - metadata:
+      entityId: d8dabfa3-fd7a-4ad3-8104-0d97c6b4c976
+    rs:
+      key: distanceMelee
+      type: float
+      value: 10.000000
+  - metadata:
+      entityId: 207066bc-7e85-4a7b-919d-cae57e4d34d7
+    rs:
+      key: distanceRange
+      type: float
+      value: 20.000000
   configId: ed481a7f-5425-4ffc-ae8c-8ed875b5f224
   currentEnvironmentId: 022da645-9d8a-4b95-af46-aef20cd8bce8
   environments:

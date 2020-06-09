@@ -11,6 +11,7 @@ public class UI_PlayerController : MonoBehaviour
 
     [SerializeField] private CinemachineFreeLook thirdPerson = null;
     [SerializeField] private CinemachineFreeLook overShoulder = null;
+    [SerializeField] private CinemachineFreeLook overShoulderTest = null;
     [SerializeField] private Transform spine = null;
 
     private bool isOverShoulder = false;
@@ -26,13 +27,18 @@ public class UI_PlayerController : MonoBehaviour
     private float currentSpeed = 0f;
     private float targetedSpeed = 0f;
     private float doubleTapTimer = 0f;
+    private float dragTimer = 0f;
 
     //config
-    private float speedBlendTime = 0.1f;
+    private float aimSensitivityX = 3f;
+    private float aimSensitivityY = 0.1f;
     private float cameraSensitivityX = 3f;
     private float cameraSensitivityY = 0.1f;
+    private float speedBlendTime = 0.1f;
     private float doubleTapThreshold = 0.5f;
-
+    private float dragThreshold = 0.25f;
+    private float distanceMelee = 10f;
+    private float distanceRange = 20f;
 
     private void Awake()
     {
@@ -44,6 +50,7 @@ public class UI_PlayerController : MonoBehaviour
         ConfigManager.FetchCompleted += UpdateConfig;
         FetchConfig();
     }
+
     void Update()
     {
         if (Input.touchCount >= 5 && delay < 0)
@@ -51,19 +58,33 @@ public class UI_PlayerController : MonoBehaviour
             ToggleDebug();
             delay = 3f;
         }
+
         delay -= Time.deltaTime;
         counter.text = tapCount.ToString();
 
-        if (EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, 10f))
+        if (EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, distanceMelee))
         {
+            thirdPerson.enabled = true;
+
             overShoulder.enabled = false;
-            animator.SetBool("Armed", false);
-            //animator.SetBool("Draw", false);
+            overShoulderTest.enabled = false;
+
+            animator.SetBool("Range", false);
+            animator.SetBool("Draw", false);
+        }
+        else if (EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, distanceRange))
+        {
+            animator.SetBool("Range", true);
+            //animator.SetBool("Draw", true);
         }
         else
         {
-            animator.SetBool("Armed", true);
-            //animator.SetBool("Draw", true);
+            thirdPerson.enabled = true;
+
+            overShoulder.enabled = false;
+            overShoulderTest.enabled = false;
+            animator.SetBool("Range", false);
+            animator.SetBool("Draw", false);
         }
 
         if (currentSpeed != targetedSpeed)
@@ -113,6 +134,7 @@ public class UI_PlayerController : MonoBehaviour
     public void TouchDrag(Touch _touch)
     {
         var screenPosition = Camera.main.ScreenToViewportPoint(_touch.rawPosition).x;
+        dragTimer += Time.deltaTime;
 
         if (screenPosition < 0.5f)
         {
@@ -132,8 +154,22 @@ public class UI_PlayerController : MonoBehaviour
 
         if (screenPosition > 0.5f)
         {
-            thirdPerson.m_XAxis.Value += _touch.deltaPosition.x * Time.deltaTime * cameraSensitivityX;
-            thirdPerson.m_YAxis.Value -= _touch.deltaPosition.y * Time.deltaTime * cameraSensitivityY;
+            if (animator.GetBool("Draw"))
+            {
+                if (dragTimer > dragThreshold)
+                {
+                    doubleTapTimer = -1;
+                    tapCount = 0;
+                }
+
+                transform.rotation *= Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, _touch.deltaPosition.x * Time.deltaTime * aimSensitivityX, transform.rotation.eulerAngles.z));
+                //spine.Rotate(Vector3.forward, _touch.deltaPosition.y);
+            }
+            else
+            {
+                thirdPerson.m_XAxis.Value += _touch.deltaPosition.x * Time.deltaTime * cameraSensitivityX;
+                thirdPerson.m_YAxis.Value -= _touch.deltaPosition.y * Time.deltaTime * cameraSensitivityY;
+            }
         }
     }
 
@@ -163,8 +199,12 @@ public class UI_PlayerController : MonoBehaviour
         {
             doubleTapTimer += Time.deltaTime;
         }
-        else
+        else if (doubleTapTimer > doubleTapThreshold)
         {
+            if (animator.GetBool("Draw"))
+            {
+                animator.SetTrigger("Attack");
+            }
             tapCount = 0;
             doubleTapTimer = -1f;
         }
@@ -172,6 +212,8 @@ public class UI_PlayerController : MonoBehaviour
 
     private void StartDoubleTapTracker()
     {
+        dragTimer = 0;
+
         if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
         {
             doubleTapTimer = 0f;
@@ -183,29 +225,24 @@ public class UI_PlayerController : MonoBehaviour
 
             if (tapCount >= 2)
             {
-                if (animator.GetBool("Draw"))
+                if (animator.GetBool("Range"))
                 {
-                    animator.SetBool("Draw", false);
-                }
-                else
-                {
-                    animator.SetBool("Draw", true);
-                }
-                //if (animator.GetBool("Armed"))
-                //{
-                //    animator.SetBool("Armed", false);
-                //    //animator.SetBool("Draw", false);
+                    if (animator.GetBool("Draw"))
+                    {
+                        animator.SetBool("Draw", false);
 
-                //    //thirdPerson.enabled = true;
-                //    //overShoulder.enabled = false;
-                //}
-                //else
-                //{
-                //    animator.SetBool("Armed", true);
-                //    //animator.SetBool("Draw", true);
-                //    //thirdPerson.enabled = true;
-                //    //overShoulder.enabled = false;
-                //}
+                        thirdPerson.enabled = true;
+                        overShoulderTest.enabled = false;
+                    }
+                    else
+                    {
+                        animator.SetBool("Draw", true);
+
+                        thirdPerson.enabled = false;
+                        overShoulderTest.enabled = true;
+
+                    }
+                }
             }
         }
 
@@ -230,10 +267,18 @@ public class UI_PlayerController : MonoBehaviour
 
     private void UpdateConfig(ConfigResponse response)
     {
-        doubleTapThreshold  = ConfigManager.appConfig.GetFloat(nameof(doubleTapThreshold));
-        speedBlendTime      = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
-        cameraSensitivityX  = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
-        cameraSensitivityY  = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
+        aimSensitivityX = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityX));
+        aimSensitivityY = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityY));
+        cameraSensitivityX = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
+        cameraSensitivityY = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
+
+        speedBlendTime = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
+
+        doubleTapThreshold = ConfigManager.appConfig.GetFloat(nameof(doubleTapThreshold));
+        dragThreshold = ConfigManager.appConfig.GetFloat(nameof(dragThreshold));
+
+        distanceMelee = ConfigManager.appConfig.GetFloat(nameof(distanceMelee));
+        distanceRange = ConfigManager.appConfig.GetFloat(nameof(distanceRange));
     }
 
     public void FetchConfig()
@@ -320,6 +365,8 @@ public class UI_PlayerController : MonoBehaviour
     private void MouseDrag()
     {
         deltaPos = currentPos - Input.mousePosition;
+        dragTimer += Time.deltaTime;
+
         if (currentSpeed != 0f)
         {
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0), 0.1f);
@@ -340,8 +387,22 @@ public class UI_PlayerController : MonoBehaviour
         }
         if (rightID == 0)
         {
-            thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * cameraSensitivityX;
-            thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * cameraSensitivityY;
+            if (animator.GetBool("Draw"))
+            {
+                if (dragTimer > dragThreshold)
+                {
+                    doubleTapTimer = -1;
+                    tapCount = 0;
+                }
+
+                transform.rotation *= Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, -deltaPos.x * Time.deltaTime * aimSensitivityX, transform.rotation.eulerAngles.z));
+                //spine.Rotate(Vector3.forward, deltaPos.y);
+            }
+            else
+            {
+                thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * cameraSensitivityX;
+                thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * cameraSensitivityY;
+            }
         }
 
         currentPos = Input.mousePosition;
