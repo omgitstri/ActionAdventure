@@ -233,9 +233,11 @@ public class UI_PlayerController : MonoBehaviour
 
                         thirdPerson.enabled = true;
                         overShoulderTest.enabled = false;
+
                     }
                     else
                     {
+                        doubleTapTimer = -1;
                         animator.SetBool("Draw", true);
 
                         thirdPerson.enabled = false;
