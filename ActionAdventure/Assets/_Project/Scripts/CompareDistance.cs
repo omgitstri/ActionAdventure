@@ -17,6 +17,7 @@ public class CompareDistance : MonoBehaviour
     void Start()
     {
         EntityTracker_Enemy.Instance.EnemyList.Add(this.transform);
+        UnityEngine.UI.Image test;
     }
 
     void Update()
