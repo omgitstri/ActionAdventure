@@ -42,7 +42,7 @@ public class UI_PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -64,7 +64,7 @@ public class UI_PlayerController : MonoBehaviour
 
         if (EntityTracker_Enemy.Instance.AreEnemiesInRange(transform.position, distanceMelee))
         {
-            thirdPerson.enabled = true;
+            //thirdPerson.enabled = true;
 
             overShoulder.enabled = false;
             overShoulderTest.enabled = false;
@@ -79,7 +79,7 @@ public class UI_PlayerController : MonoBehaviour
         }
         else
         {
-            thirdPerson.enabled = true;
+            //thirdPerson.enabled = true;
 
             overShoulder.enabled = false;
             overShoulderTest.enabled = false;
@@ -162,8 +162,21 @@ public class UI_PlayerController : MonoBehaviour
                     tapCount = 0;
                 }
 
-                transform.rotation *= Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, _touch.deltaPosition.x * Time.deltaTime * aimSensitivityX, transform.rotation.eulerAngles.z));
-                //spine.Rotate(Vector3.forward, _touch.deltaPosition.y);
+                //transform.rotation *= Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, _touch.deltaPosition.x * Time.deltaTime * aimSensitivityX, transform.rotation.eulerAngles.z));
+                transform.Rotate(Vector3.up * _touch.deltaPosition.x * Time.deltaTime * aimSensitivityX);
+                transform.Rotate(Vector3.left * _touch.deltaPosition.y * Time.deltaTime * aimSensitivityY);
+
+                //clamp
+                if (transform.localEulerAngles.x > 30 && transform.localEulerAngles.x < 50)
+                {
+                    transform.localEulerAngles = new Vector3(29.9f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                }
+                else if (transform.localEulerAngles.x < 330 && transform.localEulerAngles.x > 320)
+                {
+                    transform.localEulerAngles = new Vector3(331.1f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                }
+
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
             }
             else
             {
@@ -231,7 +244,7 @@ public class UI_PlayerController : MonoBehaviour
                     {
                         animator.SetBool("Draw", false);
 
-                        thirdPerson.enabled = true;
+                        //thirdPerson.enabled = true;
                         overShoulderTest.enabled = false;
 
                     }
@@ -239,8 +252,8 @@ public class UI_PlayerController : MonoBehaviour
                     {
                         doubleTapTimer = -1;
                         animator.SetBool("Draw", true);
-
-                        thirdPerson.enabled = false;
+                        transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
+                        //thirdPerson.enabled = false;
                         overShoulderTest.enabled = true;
 
                     }
@@ -397,8 +410,20 @@ public class UI_PlayerController : MonoBehaviour
                     tapCount = 0;
                 }
 
-                transform.rotation *= Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, -deltaPos.x * Time.deltaTime * aimSensitivityX, transform.rotation.eulerAngles.z));
-                //spine.Rotate(Vector3.forward, deltaPos.y);
+                transform.Rotate(Vector3.up * -deltaPos.x * Time.deltaTime * aimSensitivityX);
+                transform.Rotate(Vector3.left * deltaPos.y * Time.deltaTime * aimSensitivityY);
+
+                //clamp
+                if (transform.localEulerAngles.x > 30 && transform.localEulerAngles.x < 50)
+                {
+                    transform.localEulerAngles = new Vector3(29.9f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                }
+                else if (transform.localEulerAngles.x < 330 && transform.localEulerAngles.x > 320)
+                {
+                    transform.localEulerAngles = new Vector3(331.1f, transform.localEulerAngles.y, transform.localEulerAngles.z);
+                }
+
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
             }
             else
             {

@@ -12,7 +12,6 @@ public class MonobehaviourCallbacks : MonoBehaviour
         _Start.Invoke();
     }
 
-    // Update is called once per frame
     void Update()
     {
         _Update.Invoke();
