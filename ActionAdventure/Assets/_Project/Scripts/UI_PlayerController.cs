@@ -244,6 +244,8 @@ public class UI_PlayerController : MonoBehaviour
                     {
                         animator.SetBool("Draw", false);
 
+                        transform.localRotation = Quaternion.Euler(0, transform.localEulerAngles.y, 0);
+
                         //thirdPerson.enabled = true;
                         overShoulderTest.enabled = false;
 
