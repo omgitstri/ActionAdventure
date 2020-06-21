@@ -10,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private bool _dodge = false;
     [SerializeField] private bool _damage = false;
 
-    [SerializeField] private Transform hitDirection;
+    [SerializeField] private Transform hitDirection = null;
 
     void Update()
     {
@@ -27,7 +27,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             foreach (var item in transform.GetComponentsInChildren<EnemyVisual>())
             {
-                item.transform.position = Vector3.Lerp(item.initPosWorld, (item.initPosWorld - hitDirection.position) * 3 + item.random2, a);
+                item.transform.position = Vector3.Lerp(item.initPosWorld, (item.initPosWorld - hitDirection.position).normalized * 3 + item.random2, a);
                 item.transform.localScale = Vector3.Lerp(Vector3.one * 0.125f, Vector3.zero, a - 0.2f);
             }
         }

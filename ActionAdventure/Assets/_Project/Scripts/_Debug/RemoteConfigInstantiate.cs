@@ -17,13 +17,13 @@ public class RemoteConfigInstantiate : MonoBehaviour
     private void Start()
     {
         ConfigManager.FetchCompleted += InstantiateData;
-        //ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
+        ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
 
     }
 
     void Update()
     {
-        ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
+        //ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
     }
 
     public void InstantiateData(ConfigResponse response)

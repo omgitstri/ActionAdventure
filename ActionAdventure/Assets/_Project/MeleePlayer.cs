@@ -11,8 +11,6 @@ public class MeleePlayer : MonoBehaviour
     Animator animator = null;
     float speed = 1;
 
-    [SerializeField] CinemachineFreeLook vcam = null;
-
     private void Awake()
     {
         animator = GetComponent<Animator>();

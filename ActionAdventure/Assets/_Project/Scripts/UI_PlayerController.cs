@@ -12,9 +12,8 @@ public class UI_PlayerController : MonoBehaviour
     [SerializeField] private CinemachineFreeLook thirdPerson = null;
     [SerializeField] private CinemachineFreeLook overShoulder = null;
     [SerializeField] private CinemachineFreeLook overShoulderTest = null;
-    [SerializeField] private Transform spine = null;
 
-    private bool isOverShoulder = false;
+    //private bool isOverShoulder = false;
     private Vector2 rotateAxis = Vector2.zero;
 
     private Animator animator = null;

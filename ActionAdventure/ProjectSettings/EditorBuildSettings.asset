@@ -9,5 +9,4 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/AnimationControllerUI.unity
     guid: ea87a9fd4344dea4a907298f22c6adc3
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: c503701c4ab886f408f064f4b8d93a46,
-      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: c503701c4ab886f408f064f4b8d93a46, type: 2}

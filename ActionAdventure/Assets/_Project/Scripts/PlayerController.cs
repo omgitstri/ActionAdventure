@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Draw", false);
         }
 
-        if (overShoulder)
+        if (isOverShoulder)
         {
             OnRotate();
         }
