@@ -14,122 +14,122 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - metadata:
-      entityId: 54d12e70-a346-4e59-9924-159ad16e7390
+      entityId: 1166445e-6c02-451c-ac78-39e68a84f214
     rs:
       key: aimSensitivityX
       type: float
-      value: 5
+      value: 5.000000
   - metadata:
-      entityId: 71eb1ef5-dce7-456d-8467-87acd1df1eff
+      entityId: bab33fce-f538-48f9-8aa1-1986a23fe5b6
     rs:
       key: aimSensitivityY
       type: float
       value: 2.5
   - metadata:
-      entityId: 442f65eb-15da-4f82-b82a-6d18e1e5136d
+      entityId: ce6e7ac7-7955-4db9-ad43-32b6464b55e9
     rs:
       key: cameraSensitivityX
       type: float
       value: 6
   - metadata:
-      entityId: 63060ec8-4476-46d5-92b1-677652be15c5
+      entityId: 30434a15-f7fb-4055-98c2-eba87e0e8a80
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   - metadata:
-      entityId: 626e2cb1-67bd-49e4-9c85-34324bfd5f6e
+      entityId: c5382f4c-8855-46a3-855f-c6ac267f90fa
     rs:
       key: speedBlendTime
       type: float
       value: 5
   - metadata:
-      entityId: 4c02db76-de7a-4919-9da5-11fb6b8713ea
+      entityId: 643d991f-c258-416d-a2a4-644891a07203
     rs:
       key: enemyCount
       type: int
-      value: 1
+      value: 5
   - metadata:
-      entityId: 30237daa-18b0-4d12-ae5a-1b0c09b058c3
+      entityId: 51bf8db3-36f9-4427-aea5-2bb495433f1c
     rs:
       key: doubleTapThreshold
       type: float
       value: 0.25
   - metadata:
-      entityId: 6cfe079c-3543-4037-a7a7-8b171514462c
+      entityId: 5a445ff0-8623-49d2-88cb-ffbcda4037a0
     rs:
       key: distanceMelee
       type: float
       value: 10
   - metadata:
-      entityId: 569d5180-7809-4779-a270-229ea5df541f
+      entityId: afd7f521-0b19-4724-9fd6-0112bfee4bdb
     rs:
       key: distanceRange
       type: float
       value: 20
   - metadata:
-      entityId: a5e6663f-41d5-403b-a9b5-f402719723d4
+      entityId: 540ed889-1635-4939-9c73-632ad3757e0b
     rs:
       key: dragThreshold
       type: float
-      value: 0.200000
+      value: 0.2
   rsLastCachedKeyList:
   - metadata:
-      entityId: 54d12e70-a346-4e59-9924-159ad16e7390
+      entityId: 1166445e-6c02-451c-ac78-39e68a84f214
     rs:
       key: aimSensitivityX
       type: float
       value: 5.000000
   - metadata:
-      entityId: 71eb1ef5-dce7-456d-8467-87acd1df1eff
+      entityId: bab33fce-f538-48f9-8aa1-1986a23fe5b6
     rs:
       key: aimSensitivityY
       type: float
       value: 2.500000
   - metadata:
-      entityId: 442f65eb-15da-4f82-b82a-6d18e1e5136d
+      entityId: ce6e7ac7-7955-4db9-ad43-32b6464b55e9
     rs:
       key: cameraSensitivityX
       type: float
       value: 6.000000
   - metadata:
-      entityId: 63060ec8-4476-46d5-92b1-677652be15c5
+      entityId: 30434a15-f7fb-4055-98c2-eba87e0e8a80
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.050000
   - metadata:
-      entityId: 626e2cb1-67bd-49e4-9c85-34324bfd5f6e
+      entityId: c5382f4c-8855-46a3-855f-c6ac267f90fa
     rs:
       key: speedBlendTime
       type: float
       value: 5.000000
   - metadata:
-      entityId: 4c02db76-de7a-4919-9da5-11fb6b8713ea
+      entityId: 643d991f-c258-416d-a2a4-644891a07203
     rs:
       key: enemyCount
       type: int
-      value: 1
+      value: 5
   - metadata:
-      entityId: 30237daa-18b0-4d12-ae5a-1b0c09b058c3
+      entityId: 51bf8db3-36f9-4427-aea5-2bb495433f1c
     rs:
       key: doubleTapThreshold
       type: float
       value: 0.250000
   - metadata:
-      entityId: 6cfe079c-3543-4037-a7a7-8b171514462c
+      entityId: 5a445ff0-8623-49d2-88cb-ffbcda4037a0
     rs:
       key: distanceMelee
       type: float
       value: 10.000000
   - metadata:
-      entityId: 569d5180-7809-4779-a270-229ea5df541f
+      entityId: afd7f521-0b19-4724-9fd6-0112bfee4bdb
     rs:
       key: distanceRange
       type: float
       value: 20.000000
   - metadata:
-      entityId: a5e6663f-41d5-403b-a9b5-f402719723d4
+      entityId: 540ed889-1635-4939-9c73-632ad3757e0b
     rs:
       key: dragThreshold
       type: float
