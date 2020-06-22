@@ -6,7 +6,8 @@ public class EquipBow : StateMachineBehaviour
 {
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<AnimationEvents>().EquipBow();
+        animator.transform.root.GetComponent<AnimationEvents>().EquipBow();
+        Debug.Log("stateenter");
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

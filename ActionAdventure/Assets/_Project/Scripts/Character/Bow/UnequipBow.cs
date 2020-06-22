@@ -7,6 +7,7 @@ public class UnequipBow : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         animator.gameObject.GetComponent<AnimationEvents>().DisarmBow();
+        animator.gameObject.GetComponent<AnimationEvents>().ReleaseBow();
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

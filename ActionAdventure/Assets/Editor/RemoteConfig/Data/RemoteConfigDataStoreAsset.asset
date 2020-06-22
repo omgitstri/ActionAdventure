@@ -14,141 +14,141 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - metadata:
-      entityId: 1166445e-6c02-451c-ac78-39e68a84f214
+      entityId: 16ca2c67-38a5-4504-8077-f84fbaef3d0b
     rs:
       key: aimSensitivityX
       type: float
-      value: 5.000000
+      value: 2.5
   - metadata:
-      entityId: bab33fce-f538-48f9-8aa1-1986a23fe5b6
+      entityId: 011772a8-6518-43c5-8754-9bf95ec19b2a
     rs:
       key: aimSensitivityY
       type: float
-      value: 2.5
+      value: 1.25
   - metadata:
-      entityId: ce6e7ac7-7955-4db9-ad43-32b6464b55e9
+      entityId: e9770dfe-42f0-4cbb-af78-c5660337f235
     rs:
       key: cameraSensitivityX
       type: float
       value: 6
   - metadata:
-      entityId: 30434a15-f7fb-4055-98c2-eba87e0e8a80
+      entityId: 8a496539-bf05-4b90-811b-d5b4859ae5cc
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   - metadata:
-      entityId: c5382f4c-8855-46a3-855f-c6ac267f90fa
+      entityId: d98bb861-e64c-47a2-b21a-fc02f80491b2
     rs:
       key: speedBlendTime
       type: float
       value: 5
   - metadata:
-      entityId: 643d991f-c258-416d-a2a4-644891a07203
+      entityId: ac672a3d-1474-49e3-9ca4-d266194b1872
     rs:
       key: enemyCount
       type: int
       value: 5
   - metadata:
-      entityId: 51bf8db3-36f9-4427-aea5-2bb495433f1c
+      entityId: 4ca57db4-47e5-4d33-b9fb-ba52e0fb3431
     rs:
       key: doubleTapThreshold
       type: float
       value: 0.25
   - metadata:
-      entityId: 5a445ff0-8623-49d2-88cb-ffbcda4037a0
+      entityId: a523948a-20bf-4233-9abf-32e452f83dee
     rs:
       key: distanceMelee
       type: float
-      value: 10
+      value: 0
   - metadata:
-      entityId: afd7f521-0b19-4724-9fd6-0112bfee4bdb
+      entityId: 18b6803c-1d7d-4507-a4ba-683236de593c
     rs:
       key: distanceRange
       type: float
       value: 20
   - metadata:
-      entityId: 540ed889-1635-4939-9c73-632ad3757e0b
+      entityId: 5ee403c7-bd59-40c7-b04e-4c4adcf299c7
     rs:
       key: dragThreshold
       type: float
       value: 0.2
   rsLastCachedKeyList:
   - metadata:
-      entityId: 1166445e-6c02-451c-ac78-39e68a84f214
+      entityId: 16ca2c67-38a5-4504-8077-f84fbaef3d0b
     rs:
       key: aimSensitivityX
       type: float
-      value: 5.000000
+      value: 2.5
   - metadata:
-      entityId: bab33fce-f538-48f9-8aa1-1986a23fe5b6
+      entityId: 011772a8-6518-43c5-8754-9bf95ec19b2a
     rs:
       key: aimSensitivityY
       type: float
-      value: 2.500000
+      value: 1.25
   - metadata:
-      entityId: ce6e7ac7-7955-4db9-ad43-32b6464b55e9
+      entityId: e9770dfe-42f0-4cbb-af78-c5660337f235
     rs:
       key: cameraSensitivityX
       type: float
-      value: 6.000000
+      value: 6
   - metadata:
-      entityId: 30434a15-f7fb-4055-98c2-eba87e0e8a80
+      entityId: 8a496539-bf05-4b90-811b-d5b4859ae5cc
     rs:
       key: cameraSensitivityY
       type: float
-      value: 0.050000
+      value: 0.05
   - metadata:
-      entityId: c5382f4c-8855-46a3-855f-c6ac267f90fa
+      entityId: d98bb861-e64c-47a2-b21a-fc02f80491b2
     rs:
       key: speedBlendTime
       type: float
-      value: 5.000000
+      value: 5
   - metadata:
-      entityId: 643d991f-c258-416d-a2a4-644891a07203
+      entityId: ac672a3d-1474-49e3-9ca4-d266194b1872
     rs:
       key: enemyCount
       type: int
       value: 5
   - metadata:
-      entityId: 51bf8db3-36f9-4427-aea5-2bb495433f1c
+      entityId: 4ca57db4-47e5-4d33-b9fb-ba52e0fb3431
     rs:
       key: doubleTapThreshold
       type: float
-      value: 0.250000
+      value: 0.25
   - metadata:
-      entityId: 5a445ff0-8623-49d2-88cb-ffbcda4037a0
+      entityId: a523948a-20bf-4233-9abf-32e452f83dee
     rs:
       key: distanceMelee
       type: float
-      value: 10.000000
+      value: 0
   - metadata:
-      entityId: afd7f521-0b19-4724-9fd6-0112bfee4bdb
+      entityId: 18b6803c-1d7d-4507-a4ba-683236de593c
     rs:
       key: distanceRange
       type: float
-      value: 20.000000
+      value: 20
   - metadata:
-      entityId: 540ed889-1635-4939-9c73-632ad3757e0b
+      entityId: 5ee403c7-bd59-40c7-b04e-4c4adcf299c7
     rs:
       key: dragThreshold
       type: float
-      value: 0.200000
+      value: 0.2
   configId: 657c9ddc-72f7-49a6-b105-302ba472cc7e
   currentEnvironmentId: 02e4f7b8-d39f-4381-8c87-9955409977ae
   environments:
   - id: bbd64ccf-eee4-43b4-87de-270e3914d0ab
     appId: 
-    name: Release (Default)
+    name: Release
     description: 
     createdAt: 2020-06-20T23:08:19Z
-    updatedAt: 2020-06-20T23:08:19Z
+    updatedAt: 2020-06-21T05:58:05Z
   - id: 02e4f7b8-d39f-4381-8c87-9955409977ae
     appId: 
-    name: Development
+    name: Development (Default)
     description: 
     createdAt: 2020-06-20T23:08:19Z
-    updatedAt: 2020-06-20T23:08:19Z
+    updatedAt: 2020-06-21T05:58:05Z
   rulesList: []
   lastCachedRulesList: []
   addedRulesIDs: []

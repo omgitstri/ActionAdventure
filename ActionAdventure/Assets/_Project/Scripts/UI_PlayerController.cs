@@ -11,7 +11,6 @@ public class UI_PlayerController : MonoBehaviour
 
     [SerializeField] private CinemachineFreeLook thirdPerson = null;
     [SerializeField] private CinemachineFreeLook overShoulder = null;
-    [SerializeField] private CinemachineFreeLook overShoulderTest = null;
 
     //private bool isOverShoulder = false;
     private Vector2 rotateAxis = Vector2.zero;
@@ -66,7 +65,7 @@ public class UI_PlayerController : MonoBehaviour
             //thirdPerson.enabled = true;
 
             overShoulder.enabled = false;
-            overShoulderTest.enabled = false;
+            overShoulder.enabled = false;
 
             animator.SetBool("Range", false);
             animator.SetBool("Draw", false);
@@ -81,7 +80,7 @@ public class UI_PlayerController : MonoBehaviour
             //thirdPerson.enabled = true;
 
             overShoulder.enabled = false;
-            overShoulderTest.enabled = false;
+            overShoulder.enabled = false;
             animator.SetBool("Range", false);
             animator.SetBool("Draw", false);
         }
@@ -246,7 +245,7 @@ public class UI_PlayerController : MonoBehaviour
                         transform.localRotation = Quaternion.Euler(0, transform.localEulerAngles.y, 0);
 
                         //thirdPerson.enabled = true;
-                        overShoulderTest.enabled = false;
+                        overShoulder.enabled = false;
 
                     }
                     else
@@ -255,7 +254,7 @@ public class UI_PlayerController : MonoBehaviour
                         animator.SetBool("Draw", true);
                         transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
                         //thirdPerson.enabled = false;
-                        overShoulderTest.enabled = true;
+                        overShoulder.enabled = true;
 
                     }
                 }

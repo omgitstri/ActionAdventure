@@ -60,11 +60,12 @@ public class EnemyBehaviour : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             GetComponent<Animator>().SetTrigger("Damage");
-            //collision.gameObject.SetActive(false);
         }
         else
         {
+            collision.gameObject.SetActive(false);
             GetComponent<Animator>().SetTrigger("Dodge");
+
         }
     }
 
