@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EquipBow : StateMachineBehaviour
 {
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        animator.transform.root.GetComponent<AnimationEvents>().EquipBow();
-        Debug.Log("stateenter");
+        var animEvent = animator.GetComponent<AnimationEvents>();
+        animEvent.EquipBow();
     }
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

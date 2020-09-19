@@ -14,122 +14,122 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsKeyList:
   - metadata:
-      entityId: 16ca2c67-38a5-4504-8077-f84fbaef3d0b
+      entityId: eb717f7c-2f28-49b9-ad96-6fd00e230ea1
     rs:
       key: aimSensitivityX
       type: float
       value: 2.5
   - metadata:
-      entityId: 011772a8-6518-43c5-8754-9bf95ec19b2a
+      entityId: 29004135-86d3-4ee5-85b4-6f9c87cc529e
     rs:
       key: aimSensitivityY
       type: float
       value: 1.25
   - metadata:
-      entityId: e9770dfe-42f0-4cbb-af78-c5660337f235
+      entityId: 41858910-1056-4312-9341-e4f88b6a621f
     rs:
       key: cameraSensitivityX
       type: float
       value: 6
   - metadata:
-      entityId: 8a496539-bf05-4b90-811b-d5b4859ae5cc
+      entityId: ea96cebd-b505-4ef7-a72b-5cd81143533d
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   - metadata:
-      entityId: d98bb861-e64c-47a2-b21a-fc02f80491b2
+      entityId: 4058966a-44ca-4865-8c7c-298935339d1f
     rs:
       key: speedBlendTime
       type: float
       value: 5
   - metadata:
-      entityId: ac672a3d-1474-49e3-9ca4-d266194b1872
+      entityId: 9c68aedc-d2f5-4aa1-8033-d7495fd5be48
     rs:
       key: enemyCount
       type: int
-      value: 5
+      value: 2
   - metadata:
-      entityId: 4ca57db4-47e5-4d33-b9fb-ba52e0fb3431
+      entityId: d73a6083-1323-4ed7-bd8a-db7a3293e3a2
     rs:
       key: doubleTapThreshold
       type: float
       value: 0.25
   - metadata:
-      entityId: a523948a-20bf-4233-9abf-32e452f83dee
+      entityId: 597ad0c8-1940-49e4-b018-28df2470ce23
     rs:
       key: distanceMelee
       type: float
       value: 0
   - metadata:
-      entityId: 18b6803c-1d7d-4507-a4ba-683236de593c
+      entityId: a76defe1-f85b-4e13-b789-6e7f159d10d7
     rs:
       key: distanceRange
       type: float
       value: 20
   - metadata:
-      entityId: 5ee403c7-bd59-40c7-b04e-4c4adcf299c7
+      entityId: efc3cc30-d626-40ef-a3bc-a4c2c048d1da
     rs:
       key: dragThreshold
       type: float
       value: 0.2
   rsLastCachedKeyList:
   - metadata:
-      entityId: 16ca2c67-38a5-4504-8077-f84fbaef3d0b
+      entityId: eb717f7c-2f28-49b9-ad96-6fd00e230ea1
     rs:
       key: aimSensitivityX
       type: float
       value: 2.5
   - metadata:
-      entityId: 011772a8-6518-43c5-8754-9bf95ec19b2a
+      entityId: 29004135-86d3-4ee5-85b4-6f9c87cc529e
     rs:
       key: aimSensitivityY
       type: float
       value: 1.25
   - metadata:
-      entityId: e9770dfe-42f0-4cbb-af78-c5660337f235
+      entityId: 41858910-1056-4312-9341-e4f88b6a621f
     rs:
       key: cameraSensitivityX
       type: float
       value: 6
   - metadata:
-      entityId: 8a496539-bf05-4b90-811b-d5b4859ae5cc
+      entityId: ea96cebd-b505-4ef7-a72b-5cd81143533d
     rs:
       key: cameraSensitivityY
       type: float
       value: 0.05
   - metadata:
-      entityId: d98bb861-e64c-47a2-b21a-fc02f80491b2
+      entityId: 4058966a-44ca-4865-8c7c-298935339d1f
     rs:
       key: speedBlendTime
       type: float
       value: 5
   - metadata:
-      entityId: ac672a3d-1474-49e3-9ca4-d266194b1872
+      entityId: 9c68aedc-d2f5-4aa1-8033-d7495fd5be48
     rs:
       key: enemyCount
       type: int
-      value: 5
+      value: 2
   - metadata:
-      entityId: 4ca57db4-47e5-4d33-b9fb-ba52e0fb3431
+      entityId: d73a6083-1323-4ed7-bd8a-db7a3293e3a2
     rs:
       key: doubleTapThreshold
       type: float
       value: 0.25
   - metadata:
-      entityId: a523948a-20bf-4233-9abf-32e452f83dee
+      entityId: 597ad0c8-1940-49e4-b018-28df2470ce23
     rs:
       key: distanceMelee
       type: float
       value: 0
   - metadata:
-      entityId: 18b6803c-1d7d-4507-a4ba-683236de593c
+      entityId: a76defe1-f85b-4e13-b789-6e7f159d10d7
     rs:
       key: distanceRange
       type: float
       value: 20
   - metadata:
-      entityId: 5ee403c7-bd59-40c7-b04e-4c4adcf299c7
+      entityId: efc3cc30-d626-40ef-a3bc-a4c2c048d1da
     rs:
       key: dragThreshold
       type: float

@@ -65,7 +65,6 @@ public class UI_PlayerController : MonoBehaviour
             //thirdPerson.enabled = true;
 
             overShoulder.enabled = false;
-            overShoulder.enabled = false;
 
             animator.SetBool("Range", false);
             animator.SetBool("Draw", false);
@@ -79,10 +78,9 @@ public class UI_PlayerController : MonoBehaviour
         {
             //thirdPerson.enabled = true;
 
-            overShoulder.enabled = false;
-            overShoulder.enabled = false;
-            animator.SetBool("Range", false);
             animator.SetBool("Draw", false);
+            overShoulder.enabled = false;
+            //animator.SetBool("Range", false);
         }
 
         if (currentSpeed != targetedSpeed)

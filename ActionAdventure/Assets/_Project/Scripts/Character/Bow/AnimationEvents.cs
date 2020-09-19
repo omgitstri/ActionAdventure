@@ -12,6 +12,7 @@ public class AnimationEvents : MonoBehaviour
     [SerializeField] Transform _bow = null;
     [SerializeField] GameObject _arrow = null;
 
+    [ContextMenu(nameof(EquipBow))]
     public void EquipBow()
     {
         _equipBow.Invoke();
