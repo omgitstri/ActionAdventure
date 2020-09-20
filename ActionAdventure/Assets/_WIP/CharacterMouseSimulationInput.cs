@@ -6,26 +6,27 @@ using Unity.RemoteConfig;
 
 public class CharacterMouseSimulationInput : MonoBehaviour
 {
-    [SerializeField] Transform leftZone = null;
-    [SerializeField] Transform leftAnalog = null;
+    private CharacterAction _characterAction = null;
+    private Camera _mainCamera = null;
 
-    [SerializeField] private CinemachineFreeLook thirdPerson = null;
-    [SerializeField] private CinemachineFreeLook overShoulder = null;
+    //[SerializeField] Transform leftZone = null;
+    //[SerializeField] Transform leftAnalog = null;
+
+    [SerializeField] private CinemachineFreeLook _thirdPerson = null;
+    [SerializeField] private CinemachineFreeLook _overShoulder = null;
 
     //private bool isOverShoulder = false;
-    private Vector2 rotateAxis = Vector2.zero;
+    private Vector2 _rotateAxis = Vector2.zero;
 
-    private Animator animator = null;
+    private Animator _animator = null;
 
-    private int leftID = -1;
-    private int rightID = -1;
+    private int _leftID = -1;
+    private int _rightID = -1;
 
-    private int tapCount = 0;
+    private int _tapCount = 0;
 
-    private float currentSpeed = 0f;
-    private float targetedSpeed = 0f;
-    private float doubleTapTimer = 0f;
-    private float dragTimer = 0f;
+    private float _doubleTapTimer = 0f;
+    private float _dragTimer = 0f;
 
     //config
     private float aimSensitivityX = 3f;
@@ -40,12 +41,14 @@ public class CharacterMouseSimulationInput : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        _animator = GetComponentInChildren<Animator>();
+        _characterAction = GetComponent<CharacterAction>();
+        _mainCamera = Camera.main;
     }
 
     private void Start()
     {
-        animator.SetBool("Armed", true);
+        _animator.SetBool("Armed", true);
 
         ConfigManager.FetchCompleted += UpdateConfig;
         FetchConfig();
@@ -60,13 +63,8 @@ public class CharacterMouseSimulationInput : MonoBehaviour
         }
 
         delay -= Time.deltaTime;
-        counter.text = tapCount.ToString();
+        counter.text = _tapCount.ToString();
 
-        if (currentSpeed != targetedSpeed)
-        {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, targetedSpeed, speedBlendTime * Time.deltaTime);
-            animator.SetFloat("Speed", currentSpeed * 2f);
-        }
 
 #if UNITY_EDITOR
         MouseInput();
@@ -89,15 +87,11 @@ public class CharacterMouseSimulationInput : MonoBehaviour
     {
         if (_touch.phase == TouchPhase.Began)
         {
-            var screenPosition = Camera.main.ScreenToViewportPoint(_touch.rawPosition).x;
+            var screenPosition = _mainCamera.ScreenToViewportPoint(_touch.rawPosition).x;
 
             if (screenPosition < 0.5f)
             {
-                leftAnalog.gameObject.SetActive(true);
-                leftZone.gameObject.SetActive(true);
-                leftAnalog.transform.position = _touch.position;
-
-                leftZone.transform.position = _touch.position - Vector2.up * leftAnalog.GetComponent<RectTransform>().rect.height;
+                OnScreenUI.Instance.EnableJoystick(_touch.position);
             }
             else if (screenPosition > 0.5f)
             {
@@ -108,33 +102,26 @@ public class CharacterMouseSimulationInput : MonoBehaviour
 
     public void TouchDrag(Touch _touch)
     {
-        var screenPosition = Camera.main.ScreenToViewportPoint(_touch.rawPosition).x;
-        dragTimer += Time.deltaTime;
+        var screenPosition = _mainCamera.ScreenToViewportPoint(_touch.rawPosition).x;
+        _dragTimer += Time.deltaTime;
 
         if (screenPosition < 0.5f)
         {
-            leftAnalog.position = _touch.position;
+            OnScreenUI.Instance.UpdateJoystick(_touch.position);
 
-            if ((leftAnalog.position - leftZone.position).sqrMagnitude > leftZone.GetComponent<RectTransform>().rect.height * leftZone.GetComponent<RectTransform>().rect.height)
-            {
-                leftZone.position = Vector3.Lerp(leftZone.position, leftZone.position + (leftAnalog.position - leftZone.position) * 0.5f, 0.3f);
-            }
-
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0), 0.3f);
-
-            targetedSpeed = Direction().magnitude / leftAnalog.GetComponent<RectTransform>().rect.width;
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, _mainCamera.transform.rotation.eulerAngles.y, 0), 0.3f);
 
             WalkAnimation();
         }
 
         if (screenPosition > 0.5f)
         {
-            if (animator.GetBool("Draw"))
+            if (_animator.GetBool("Draw"))
             {
-                if (dragTimer > dragThreshold)
+                if (_dragTimer > dragThreshold)
                 {
-                    doubleTapTimer = -1;
-                    tapCount = 0;
+                    _doubleTapTimer = -1;
+                    _tapCount = 0;
                 }
 
                 //transform.rotation *= Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, _touch.deltaPosition.x * Time.deltaTime * aimSensitivityX, transform.rotation.eulerAngles.z));
@@ -155,8 +142,8 @@ public class CharacterMouseSimulationInput : MonoBehaviour
             }
             else
             {
-                thirdPerson.m_XAxis.Value += _touch.deltaPosition.x * Time.deltaTime * cameraSensitivityX;
-                thirdPerson.m_YAxis.Value -= _touch.deltaPosition.y * Time.deltaTime * cameraSensitivityY;
+                _thirdPerson.m_XAxis.Value += _touch.deltaPosition.x * Time.deltaTime * cameraSensitivityX;
+                _thirdPerson.m_YAxis.Value -= _touch.deltaPosition.y * Time.deltaTime * cameraSensitivityY;
             }
         }
     }
@@ -166,11 +153,10 @@ public class CharacterMouseSimulationInput : MonoBehaviour
 
         if (_touch.phase == TouchPhase.Ended || _touch.phase == TouchPhase.Canceled)
         {
-            if (Camera.main.ScreenToViewportPoint(_touch.rawPosition).x < 0.5f)
+            if (_mainCamera.ScreenToViewportPoint(_touch.rawPosition).x < 0.5f)
             {
-                leftAnalog.gameObject.SetActive(false);
-                leftZone.gameObject.SetActive(false);
-                targetedSpeed = 0f;
+
+                OnScreenUI.Instance.DisableJoystick();
 
                 WalkAnimation();
             }
@@ -183,57 +169,57 @@ public class CharacterMouseSimulationInput : MonoBehaviour
 
     private void DoubleTapTimer()
     {
-        if (doubleTapTimer >= 0 && doubleTapTimer < doubleTapThreshold)
+        if (_doubleTapTimer >= 0 && _doubleTapTimer < doubleTapThreshold)
         {
-            doubleTapTimer += Time.deltaTime;
+            _doubleTapTimer += Time.deltaTime;
         }
-        else if (doubleTapTimer > doubleTapThreshold)
+        else if (_doubleTapTimer > doubleTapThreshold)
         {
-            if (animator.GetBool("Draw"))
+            if (_animator.GetBool("Draw"))
             {
-                animator.SetTrigger("Attack");
+                _animator.SetTrigger("Attack");
             }
-            tapCount = 0;
-            doubleTapTimer = -1f;
+            _tapCount = 0;
+            _doubleTapTimer = -1f;
         }
     }
 
     private void StartDoubleTapTracker()
     {
-        dragTimer = 0;
+        _dragTimer = 0;
 
-        if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
+        if (_doubleTapTimer > doubleTapThreshold || _doubleTapTimer < 0)
         {
-            doubleTapTimer = 0f;
-            tapCount = 1;
+            _doubleTapTimer = 0f;
+            _tapCount = 1;
         }
         else
         {
-            tapCount++;
+            _tapCount++;
 
-            if (tapCount >= 2)
+            if (_tapCount >= 2)
             {
                 //if (animator.GetBool("Range"))
                 //{
-                    if (animator.GetBool("Draw"))
-                    {
-                        animator.SetBool("Draw", false);
+                if (_animator.GetBool("Draw"))
+                {
+                    _animator.SetBool("Draw", false);
 
-                        transform.localRotation = Quaternion.Euler(0, transform.localEulerAngles.y, 0);
+                    transform.localRotation = Quaternion.Euler(0, transform.localEulerAngles.y, 0);
 
-                        //thirdPerson.enabled = true;
-                        overShoulder.enabled = false;
+                    //thirdPerson.enabled = true;
+                    _overShoulder.enabled = false;
 
-                    }
-                    else
-                    {
-                        doubleTapTimer = -1;
-                        animator.SetBool("Draw", true);
-                        transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
-                        //thirdPerson.enabled = false;
-                        overShoulder.enabled = true;
+                }
+                else
+                {
+                    _doubleTapTimer = -1;
+                    _animator.SetBool("Draw", true);
+                    transform.localRotation = Quaternion.Euler(0, _mainCamera.transform.rotation.eulerAngles.y, 0);
+                    //thirdPerson.enabled = false;
+                    _overShoulder.enabled = true;
 
-                    }
+                }
                 //}
             }
         }
@@ -243,14 +229,11 @@ public class CharacterMouseSimulationInput : MonoBehaviour
 
     private void WalkAnimation()
     {
-        animator.SetFloat("Horizontal", Direction().x);
-        animator.SetFloat("Vertical", Direction().y);
-        animator.SetFloat("Speed", currentSpeed * 2f);
-    }
+        _characterAction.Move(OnScreenUI.Instance.Direction());
 
-    private Vector2 Direction()
-    {
-        return (leftAnalog.position - leftZone.position);
+        //animator.SetFloat("Horizontal", Direction().x);
+        //animator.SetFloat("Vertical", Direction().y);
+        //animator.SetFloat("Speed", currentSpeed * 2f);
     }
 
     #region RemoteConfig
@@ -334,21 +317,22 @@ public class CharacterMouseSimulationInput : MonoBehaviour
     {
         currentPos = Input.mousePosition;
 
-        var screenNormal = Camera.main.ScreenToViewportPoint(Input.mousePosition).x;
+        var screenNormal = _mainCamera.ScreenToViewportPoint(Input.mousePosition).x;
 
         if (screenNormal < 0.5f)
         {
-            leftAnalog.transform.position = currentPos;
-            leftZone.transform.position = currentPos - Vector3.up * leftAnalog.GetComponent<RectTransform>().rect.height;
+            OnScreenUI.Instance.EnableJoystick(currentPos);
+            //leftAnalog.transform.position = currentPos;
+            //leftZone.transform.position = currentPos - Vector3.up * leftAnalog.GetComponent<RectTransform>().rect.height;
 
-            leftAnalog.gameObject.SetActive(true);
-            leftZone.gameObject.SetActive(true);
+            //leftAnalog.gameObject.SetActive(true);
+            //leftZone.gameObject.SetActive(true);
 
-            leftID = 0;
+            _leftID = 0;
         }
         else if (screenNormal > 0.5f)
         {
-            rightID = 0;
+            _rightID = 0;
 
             StartDoubleTapTracker();
         }
@@ -357,34 +341,24 @@ public class CharacterMouseSimulationInput : MonoBehaviour
     private void MouseDrag()
     {
         deltaPos = currentPos - Input.mousePosition;
-        dragTimer += Time.deltaTime;
+        _dragTimer += Time.deltaTime;
 
-        if (currentSpeed != 0f)
+
+        if (_leftID == 0)
         {
-            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0), 0.1f);
-        }
-
-        if (leftID == 0)
-        {
-            leftAnalog.position = Input.mousePosition;
-
-            if ((leftAnalog.position - leftZone.position).sqrMagnitude > leftAnalog.GetComponent<RectTransform>().rect.height * leftAnalog.GetComponent<RectTransform>().rect.height)
-            {
-                leftZone.position = Vector3.Lerp(leftZone.position, leftZone.position + (leftAnalog.position - leftZone.position) * 0.5f, 0.3f);
-            }
-
-            targetedSpeed = Direction().magnitude / leftAnalog.GetComponent<RectTransform>().rect.width;
+            OnScreenUI.Instance.UpdateJoystick(Input.mousePosition);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, _mainCamera.transform.rotation.eulerAngles.y, 0), 0.1f);
 
             WalkAnimation();
         }
-        if (rightID == 0)
+        if (_rightID == 0)
         {
-            if (animator.GetBool("Draw"))
+            if (_animator.GetBool("Draw"))
             {
-                if (dragTimer > dragThreshold)
+                if (_dragTimer > dragThreshold)
                 {
-                    doubleTapTimer = -1;
-                    tapCount = 0;
+                    _doubleTapTimer = -1;
+                    _tapCount = 0;
                 }
 
                 transform.Rotate(Vector3.up * -deltaPos.x * Time.deltaTime * aimSensitivityX);
@@ -404,8 +378,8 @@ public class CharacterMouseSimulationInput : MonoBehaviour
             }
             else
             {
-                thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * cameraSensitivityX;
-                thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * cameraSensitivityY;
+                _thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * cameraSensitivityX;
+                _thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * cameraSensitivityY;
             }
         }
 
@@ -414,14 +388,12 @@ public class CharacterMouseSimulationInput : MonoBehaviour
 
     private void MouseUp()
     {
-        leftAnalog.gameObject.SetActive(false);
-        leftZone.gameObject.SetActive(false);
-        targetedSpeed = 0f;
+        OnScreenUI.Instance.DisableJoystick();
 
         WalkAnimation();
 
-        leftID = -1;
-        rightID = -1;
+        _leftID = -1;
+        _rightID = -1;
 
     }
     #endregion

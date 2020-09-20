@@ -5,8 +5,13 @@ using Unity.RemoteConfig;
 
 public class CharacterTouchInput : MonoBehaviour
 {
-    private int tapCount = 0;
-    private float doubleTapTimer = 0f;
+    private CharacterAction _characterAction = null;
+
+    private Camera _mainCamera = null;
+
+    private int _tapCount = 0;
+    private float _doubleTapTimer = 0f;
+    private float _dragTimer = 0f;
 
     //config
     private float aimSensitivityX = 3f;
@@ -18,6 +23,12 @@ public class CharacterTouchInput : MonoBehaviour
     private float dragThreshold = 0.25f;
     private float distanceMelee = 10f;
     private float distanceRange = 20f;
+
+    private void Awake()
+    {
+        _characterAction = GetComponent<CharacterAction>();
+        _mainCamera = Camera.main;
+    }
 
     private void Start()
     {
@@ -42,12 +53,32 @@ public class CharacterTouchInput : MonoBehaviour
     {
         if (_touch.phase == TouchPhase.Began)
         {
-            StartDoubleTapTracker();
+            var screenPosition = _mainCamera.ScreenToViewportPoint(_touch.rawPosition).x;
+
+            if (screenPosition < 0.5f)
+            {
+                OnScreenUI.Instance.EnableJoystick(_touch.position);
+            }
+            else if (screenPosition > 0.5f)
+            {
+                StartDoubleTapTracker();
+            }
         }
     }
 
     public void TouchDrag(Touch _touch)
     {
+        var screenPosition = _mainCamera.ScreenToViewportPoint(_touch.rawPosition).x;
+        _dragTimer += Time.deltaTime;
+
+        if (screenPosition < 0.5f)
+        {
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(0, _mainCamera.transform.rotation.eulerAngles.y, 0), 0.3f);
+
+            OnScreenUI.Instance.UpdateJoystick(_touch.position);
+
+            _characterAction.Move(OnScreenUI.Instance.Direction());
+        }
 
     }
 
@@ -55,35 +86,44 @@ public class CharacterTouchInput : MonoBehaviour
     {
         if (_touch.phase == TouchPhase.Ended || _touch.phase == TouchPhase.Canceled)
         {
+            if (_mainCamera.ScreenToViewportPoint(_touch.rawPosition).x < 0.5f)
+            {
+                OnScreenUI.Instance.DisableJoystick();
 
+                _characterAction.Move(OnScreenUI.Instance.Direction());
+            }
+            else
+            {
+
+            }
         }
     }
 
     private void DoubleTapTimer()
     {
-        if (doubleTapTimer >= 0 && doubleTapTimer < doubleTapThreshold)
+        if (_doubleTapTimer >= 0 && _doubleTapTimer < doubleTapThreshold)
         {
-            doubleTapTimer += Time.deltaTime;
+            _doubleTapTimer += Time.deltaTime;
         }
         else
         {
-            tapCount = 0;
-            doubleTapTimer = -1f;
+            _tapCount = 0;
+            _doubleTapTimer = -1f;
         }
     }
 
     private void StartDoubleTapTracker()
     {
-        if (doubleTapTimer > doubleTapThreshold || doubleTapTimer < 0)
+        if (_doubleTapTimer > doubleTapThreshold || _doubleTapTimer < 0)
         {
-            doubleTapTimer = 0f;
-            tapCount = 1;
+            _doubleTapTimer = 0f;
+            _tapCount = 1;
         }
         else
         {
-            tapCount++;
+            _tapCount++;
 
-            if (tapCount >= 2)
+            if (_tapCount >= 2)
             {
                 //do stuff
             }

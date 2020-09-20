@@ -228,9 +228,10 @@ GameObject:
   - component: {fileID: 5408209439215558103}
   - component: {fileID: 6988855290464395253}
   - component: {fileID: 6988855290464395259}
-  - component: {fileID: 6988855290464395257}
+  - component: {fileID: 6988855289759018725}
+  - component: {fileID: 6988855289759018726}
   m_Layer: 0
-  m_Name: xbot_fix_transform
+  m_Name: CharacterArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +333,7 @@ MonoBehaviour:
   - m_Rig: {fileID: 6988855290447781136}
     m_Active: 1
   m_Effectors: []
---- !u!114 &6988855290464395257
+--- !u!114 &6988855289759018725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -341,35 +342,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431172498457215678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46225004e8cb7e14b87016a7d9b85a75, type: 3}
+  m_Script: {fileID: 11500000, guid: f7d7a73e9ef95f24ba2b48a34e8d2995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipBow:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6988855290447781136}
-        m_TargetAssemblyTypeName: UnityEngine.Animations.Rigging.Rig, Unity.Animation.Rigging
-        m_MethodName: set_weight
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _disarmBow:
-    m_PersistentCalls:
-      m_Calls: []
-  _drawBow:
-    m_PersistentCalls:
-      m_Calls: []
-  _releaseBow:
-    m_PersistentCalls:
-      m_Calls: []
-  _bow: {fileID: 0}
-  _arrow: {fileID: 0}
+  characterAction: {fileID: 6988855289759018726}
+  leftZone: {fileID: 0}
+  leftAnalog: {fileID: 0}
+  thirdPerson: {fileID: 0}
+  overShoulder: {fileID: 0}
+  debugMenu: {fileID: 0}
+  counter: {fileID: 0}
+--- !u!114 &6988855289759018726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431172498457215678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55dcadec730a3814b958b7337efe6e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1433619170473342683
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +1935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6988855289898284311}
   m_Layer: 0
-  m_Name: hand
+  m_Name: handL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1954,14 +1948,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6988855289898284304}
-  m_LocalRotation: {x: -0.433843, y: 0.72709453, z: 0.34788233, w: 0.4026062}
-  m_LocalPosition: {x: 0.129, y: 1.453, z: 0.677}
+  m_LocalRotation: {x: -0.46832025, y: 0.6802485, z: 0.29986352, w: 0.47751442}
+  m_LocalPosition: {x: 0.124, y: 1.447, z: 0.676}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6988855290615379478}
   m_Father: {fileID: 6988855291196733294}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -58.784, y: 146.822, z: -42.596}
+  m_LocalEulerAnglesHint: {x: -58.784, y: 134.635, z: -42.596}
 --- !u!1 &6988855290447781137
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,7 +2001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Effectors:
   - m_Transform: {fileID: 0}
     m_Style:
@@ -2100,7 +2094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf219326d2292de48a0c671da18d402b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Data:
     m_ConstrainedObject: {fileID: 1618678430575030271}
     m_OverrideSource: {fileID: 6988855290679794020}
@@ -2198,7 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Data:
     m_Root: {fileID: 1631420598616526358}
     m_Mid: {fileID: 1015585272442220493}
