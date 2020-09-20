@@ -114,10 +114,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8d243b295878044b3742e8d4572a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMenu: {fileID: 2544201178199854861}
-  tapCounter: {fileID: 2544201178289597915}
   _leftZone: {fileID: 2544201176636728415}
   _leftAnalog: {fileID: 2544201177090499579}
+  _debugMenu: {fileID: 2544201178199854861}
+  _debugCounter: {fileID: 2544201178289597915}
 --- !u!1 &2544201176636728414
 GameObject:
   m_ObjectHideFlags: 0

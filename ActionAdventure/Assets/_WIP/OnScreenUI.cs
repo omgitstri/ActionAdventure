@@ -24,9 +24,16 @@ public class OnScreenUI : MonoBehaviour
         _instance = this;
     }
 
+    private void Update()
+    {
+        if (Input.touchCount >= 5 && _delay < 0)
+        {
+            ToggleDebug();
+            _delay = 3f;
+        }
 
-    [SerializeField] private GameObject debugMenu = null;
-    [SerializeField] UnityEngine.UI.Text tapCounter = null;
+        _delay -= Time.deltaTime;
+    }
 
     [SerializeField] RectTransform _leftZone = null;
     [SerializeField] RectTransform _leftAnalog = null;
@@ -63,4 +70,32 @@ public class OnScreenUI : MonoBehaviour
     {
         return (_leftAnalog.position - _leftZone.position);
     }
+
+    #region Debug
+    private bool toggleDebug = false;
+    [SerializeField] private GameObject _debugMenu = null;
+    float _delay = 0;
+
+    [SerializeField] UnityEngine.UI.Text _debugCounter = null;
+
+    public void ToggleDebug()
+    {
+
+        if (toggleDebug)
+        {
+            _debugMenu.SetActive(false);
+            toggleDebug = false;
+        }
+        else
+        {
+            _debugMenu.SetActive(true);
+            toggleDebug = true;
+        }
+    }
+
+    public void DebugUpdateTapCount(string tapCount)
+    {
+        _debugCounter.text = tapCount;
+    }
+    #endregion
 }
