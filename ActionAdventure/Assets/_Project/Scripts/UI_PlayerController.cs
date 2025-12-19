@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+// using Cinemachine;
 using Unity.RemoteConfig;
 
 public class UI_PlayerController : MonoBehaviour
@@ -9,8 +9,8 @@ public class UI_PlayerController : MonoBehaviour
     [SerializeField] Transform leftZone = null;
     [SerializeField] Transform leftAnalog = null;
 
-    [SerializeField] private CinemachineFreeLook thirdPerson = null;
-    [SerializeField] private CinemachineFreeLook overShoulder = null;
+    // [SerializeField] private CinemachineFreeLook thirdPerson = null;
+    // [SerializeField] private CinemachineFreeLook overShoulder = null;
 
     //private bool isOverShoulder = false;
     private Vector2 rotateAxis = Vector2.zero;
@@ -45,8 +45,8 @@ public class UI_PlayerController : MonoBehaviour
 
     private void Start()
     {
-        ConfigManager.FetchCompleted += UpdateConfig;
-        FetchConfig();
+        // ConfigManager.FetchCompleted += UpdateConfig;
+        // FetchConfig();
     }
 
     void Update()
@@ -64,7 +64,7 @@ public class UI_PlayerController : MonoBehaviour
         {
             //thirdPerson.enabled = true;
 
-            overShoulder.enabled = false;
+            // overShoulder.enabled = false;
 
             animator.SetBool("Range", false);
             animator.SetBool("Draw", false);
@@ -79,7 +79,7 @@ public class UI_PlayerController : MonoBehaviour
             //thirdPerson.enabled = true;
 
             animator.SetBool("Draw", false);
-            overShoulder.enabled = false;
+            // overShoulder.enabled = false;
             //animator.SetBool("Range", false);
         }
 
@@ -176,8 +176,8 @@ public class UI_PlayerController : MonoBehaviour
             }
             else
             {
-                thirdPerson.m_XAxis.Value += _touch.deltaPosition.x * Time.deltaTime * cameraSensitivityX;
-                thirdPerson.m_YAxis.Value -= _touch.deltaPosition.y * Time.deltaTime * cameraSensitivityY;
+                // thirdPerson.m_XAxis.Value += _touch.deltaPosition.x * Time.deltaTime * cameraSensitivityX;
+                // thirdPerson.m_YAxis.Value -= _touch.deltaPosition.y * Time.deltaTime * cameraSensitivityY;
             }
         }
     }
@@ -243,7 +243,7 @@ public class UI_PlayerController : MonoBehaviour
                         transform.localRotation = Quaternion.Euler(0, transform.localEulerAngles.y, 0);
 
                         //thirdPerson.enabled = true;
-                        overShoulder.enabled = false;
+                        // overShoulder.enabled = false;
 
                     }
                     else
@@ -252,7 +252,7 @@ public class UI_PlayerController : MonoBehaviour
                         animator.SetBool("Draw", true);
                         transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
                         //thirdPerson.enabled = false;
-                        overShoulder.enabled = true;
+                        // overShoulder.enabled = true;
 
                     }
                 }
@@ -274,31 +274,31 @@ public class UI_PlayerController : MonoBehaviour
         return (leftAnalog.position - leftZone.position);
     }
 
-    #region RemoteConfig
-    struct userAttributes { };
-    struct appAttributes { };
-
-    private void UpdateConfig(ConfigResponse response)
-    {
-        aimSensitivityX = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityX));
-        aimSensitivityY = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityY));
-        cameraSensitivityX = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
-        cameraSensitivityY = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
-
-        speedBlendTime = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
-
-        doubleTapThreshold = ConfigManager.appConfig.GetFloat(nameof(doubleTapThreshold));
-        dragThreshold = ConfigManager.appConfig.GetFloat(nameof(dragThreshold));
-
-        distanceMelee = ConfigManager.appConfig.GetFloat(nameof(distanceMelee));
-        distanceRange = ConfigManager.appConfig.GetFloat(nameof(distanceRange));
-    }
-
-    public void FetchConfig()
-    {
-        ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
-    }
-    #endregion
+    // #region RemoteConfig
+    // struct userAttributes { };
+    // struct appAttributes { };
+    //
+    // private void UpdateConfig(ConfigResponse response)
+    // {
+    //     aimSensitivityX = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityX));
+    //     aimSensitivityY = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityY));
+    //     cameraSensitivityX = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
+    //     cameraSensitivityY = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
+    //
+    //     speedBlendTime = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
+    //
+    //     doubleTapThreshold = ConfigManager.appConfig.GetFloat(nameof(doubleTapThreshold));
+    //     dragThreshold = ConfigManager.appConfig.GetFloat(nameof(dragThreshold));
+    //
+    //     distanceMelee = ConfigManager.appConfig.GetFloat(nameof(distanceMelee));
+    //     distanceRange = ConfigManager.appConfig.GetFloat(nameof(distanceRange));
+    // }
+    //
+    // public void FetchConfig()
+    // {
+    //     ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
+    // }
+    // #endregion
 
     #region Debug
     private bool toggleDebug = false;
@@ -425,8 +425,8 @@ public class UI_PlayerController : MonoBehaviour
             }
             else
             {
-                thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * cameraSensitivityX;
-                thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * cameraSensitivityY;
+                // thirdPerson.m_XAxis.Value -= deltaPos.x * Time.deltaTime * cameraSensitivityX;
+                // thirdPerson.m_YAxis.Value -= deltaPos.y * Time.deltaTime * cameraSensitivityY;
             }
         }
 

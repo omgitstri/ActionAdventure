@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9afc9845-77f5-438e-bd40-bf9d4e09656c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Settings/ForwardRenderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../Settings/ForwardRenderer.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Black.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Blue.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Brown.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Brown.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Green.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/LightBrown.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/LightBrown.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Placeholder.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Placeholder.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/ProBuilderGridDefault.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/ProBuilderGridDefault.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Purple.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Purple.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Red.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Shinai.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Shinai.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/Yellow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/Yellow.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/xBot_Joint.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/xBot_Joint.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Art/Materials/xBot_Surface.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../Art/Materials/xBot_Surface.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../New Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ShaderGraph_Smear/Shader Graphs_Smear.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ShaderGraph_Smear/Shader Graphs_Smear.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ShaderGraph_Smear/Shader Graphs_Smear02.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ShaderGraph_Smear/Shader Graphs_Smear02.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ShaderGraph_Smear/Shader Graphs_Smear03.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../ShaderGraph_Smear/Shader Graphs_Smear03.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_WIP/Shader Graphs_leaf 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../_WIP/Shader Graphs_leaf 1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../_WIP/Shader Graphs_leaf.mat" beforeDir="false" afterPath="$PROJECT_DIR$/../../_WIP/Shader Graphs_leaf.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/CompareDistance.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="3733xCBKB89pVTYRaiU5epEV7HT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9afc9845-77f5-438e-bd40-bf9d4e09656c" name="Changes" comment="" />
+      <created>1766118171856</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766118171856</updated>
+      <workItem from="1766118172993" duration="16000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

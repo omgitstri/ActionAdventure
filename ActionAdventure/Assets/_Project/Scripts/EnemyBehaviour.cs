@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
 [ExecuteAlways]
 public class EnemyBehaviour : MonoBehaviour
@@ -14,7 +13,6 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private Transform hitDirection = null;
     Vector3 collisionPoint = Vector3.zero;
 
-    [SerializeField] CinemachineFreeLook overshoulder;
 
     void Update()
     {
@@ -43,8 +41,6 @@ public class EnemyBehaviour : MonoBehaviour
                 //item.transform.position = Vector3.Lerp(item.initPosWorld, (item.initPosWorld - hitDirection.position).normalized * 3 + item.random2, a);
                 item.transform.localPosition = Vector3.Lerp(item.initPos, (item.initPosWorld - collisionPoint).normalized * 3 + item.random2, a);
                 item.transform.localScale = Vector3.Lerp(Vector3.one * 0.125f, Vector3.zero, a - 0.2f);
-
-                overshoulder.GetRig(1).GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = Mathf.Lerp(2, 0, a);
             }
         }
     }

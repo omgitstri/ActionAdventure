@@ -35,8 +35,8 @@ public class CharacterMouseSimulationInput : MonoBehaviour
         _characterAction.ToggleWeapon();
         //temp
 
-        ConfigManager.FetchCompleted += UpdateConfig;
-        FetchConfig();
+        // ConfigManager.FetchCompleted += UpdateConfig;
+        // FetchConfig();
     }
 
     void Update()
@@ -163,25 +163,25 @@ public class CharacterMouseSimulationInput : MonoBehaviour
         }
     }
 
+    //
+    // #region RemoteConfig
+    // struct userAttributes { };
+    // struct appAttributes { };
 
-    #region RemoteConfig
-    struct userAttributes { };
-    struct appAttributes { };
-
-    private void UpdateConfig(ConfigResponse response)
-    {
-        aimSensitivityX = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityX));
-        aimSensitivityY = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityY));
-
-        doubleTapThreshold = ConfigManager.appConfig.GetFloat(nameof(doubleTapThreshold));
-        dragThreshold = ConfigManager.appConfig.GetFloat(nameof(dragThreshold));
-    }
-
-    public void FetchConfig()
-    {
-        ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
-    }
-    #endregion
+    // private void UpdateConfig(ConfigResponse response)
+    // {
+    //     aimSensitivityX = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityX));
+    //     aimSensitivityY = ConfigManager.appConfig.GetFloat(nameof(aimSensitivityY));
+    //
+    //     doubleTapThreshold = ConfigManager.appConfig.GetFloat(nameof(doubleTapThreshold));
+    //     dragThreshold = ConfigManager.appConfig.GetFloat(nameof(dragThreshold));
+    // }
+    //
+    // public void FetchConfig()
+    // {
+    //     ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
+    // }
+    // #endregion
 
 
 

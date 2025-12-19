@@ -11,7 +11,7 @@ public class CompareDistance : MonoBehaviour
 
     private void Awake()
     {
-        ConfigManager.FetchCompleted += UpdateConfig;
+        // ConfigManager.FetchCompleted += UpdateConfig;
     }
 
     void Start()
@@ -35,11 +35,11 @@ public class CompareDistance : MonoBehaviour
         }
     }
 
-    private void UpdateConfig(ConfigResponse response)
-    {
-        distanceMelee = ConfigManager.appConfig.GetFloat(nameof(distanceMelee));
-        distanceRange = ConfigManager.appConfig.GetFloat(nameof(distanceRange));
-    }
+    // private void UpdateConfig(ConfigResponse response)
+    // {
+    //     distanceMelee = ConfigManager.appConfig.GetFloat(nameof(distanceMelee));
+    //     distanceRange = ConfigManager.appConfig.GetFloat(nameof(distanceRange));
+    // }
 
     private void OnDestroy()
     {

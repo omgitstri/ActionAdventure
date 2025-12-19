@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+// using Cinemachine;
 
 public class UIControl : MonoBehaviour
 {
     [SerializeField] Transform leftZone = null;
     [SerializeField] Transform leftAnalog = null;
 
-    [SerializeField] private CinemachineFreeLook vcam = null;
+    // [SerializeField] private CinemachineFreeLook vcam = null;
 
     int leftID = -1;
     int rightID = -1;
@@ -48,8 +48,8 @@ public class UIControl : MonoBehaviour
 
         if (rightID == 0)
         {
-            vcam.m_XAxis.Value -= deltaPos.x * Time.deltaTime * 10f;
-            vcam.m_YAxis.Value -= deltaPos.y * Time.deltaTime * 0.5f;
+            // vcam.m_XAxis.Value -= deltaPos.x * Time.deltaTime * 10f;
+            // vcam.m_YAxis.Value -= deltaPos.y * Time.deltaTime * 0.5f;
         }
         if (leftID == 0)
         {
@@ -82,12 +82,12 @@ public class UIControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            vcam.m_XAxis.Value -= 1 * Time.deltaTime * 20;
+            // vcam.m_XAxis.Value -= 1 * Time.deltaTime * 20;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            vcam.m_XAxis.Value += 1 * Time.deltaTime * 20;
+            // vcam.m_XAxis.Value += 1 * Time.deltaTime * 20;
         }
 
 
@@ -180,8 +180,8 @@ public class UIControl : MonoBehaviour
         {
             transform.localRotation = Quaternion.Euler(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
-            vcam.m_XAxis.Value += Input.GetTouch(rightID).deltaPosition.x * Time.deltaTime * 20f;
-            vcam.m_YAxis.Value -= Input.GetTouch(rightID).deltaPosition.y * Time.deltaTime * 0.5f;
+            // vcam.m_XAxis.Value += Input.GetTouch(rightID).deltaPosition.x * Time.deltaTime * 20f;
+            // vcam.m_YAxis.Value -= Input.GetTouch(rightID).deltaPosition.y * Time.deltaTime * 0.5f;
         }
     }
 }

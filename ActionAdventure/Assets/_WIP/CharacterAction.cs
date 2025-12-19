@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.RemoteConfig;
-using Cinemachine;
+// using Cinemachine;
 
 
 
 public class CharacterAction : MonoBehaviour
 {
-    [SerializeField] private CinemachineFreeLook _thirdPerson = null;
-    [SerializeField] private CinemachineFreeLook _overShoulder = null;
-
+    // [SerializeField] private CinemachineFreeLook _thirdPerson = null;
+    // [SerializeField] private CinemachineFreeLook _overShoulder = null;
+    //
 
     private enum CharacterStates { Draw, Armed };
     private enum CharacterStats { Speed, Vertical, Horizontal };
@@ -35,8 +35,8 @@ public class CharacterAction : MonoBehaviour
 
     private void Start()
     {
-        ConfigManager.FetchCompleted += UpdateConfig;
-        FetchConfig();
+        // ConfigManager.FetchCompleted += UpdateConfig;
+        // FetchConfig();
     }
 
     private void Update()
@@ -78,8 +78,8 @@ public class CharacterAction : MonoBehaviour
         }
         else
         {
-            _thirdPerson.m_XAxis.Value += deltaPosition.x * Time.deltaTime * cameraSensitivityX;
-            _thirdPerson.m_YAxis.Value -= deltaPosition.y * Time.deltaTime * cameraSensitivityY;
+            // _thirdPerson.m_XAxis.Value += deltaPosition.x * Time.deltaTime * cameraSensitivityX;
+            // _thirdPerson.m_YAxis.Value -= deltaPosition.y * Time.deltaTime * cameraSensitivityY;
         }
     }
 
@@ -101,8 +101,8 @@ public class CharacterAction : MonoBehaviour
 
             transform.localRotation = Quaternion.Euler(0, transform.localEulerAngles.y, 0);
 
-            _thirdPerson.enabled = true;
-            _overShoulder.enabled = false;
+            // _thirdPerson.enabled = true;
+            // _overShoulder.enabled = false;
 
             isThirdCam = true;
         }
@@ -111,8 +111,8 @@ public class CharacterAction : MonoBehaviour
             _animator.SetBool(CharacterStates.Draw.ToString(), true);
             transform.localRotation = Quaternion.Euler(0, mainCam.transform.rotation.eulerAngles.y, 0);
 
-            _thirdPerson.enabled = false;
-            _overShoulder.enabled = true;
+            // _thirdPerson.enabled = false;
+            // _overShoulder.enabled = true;
 
             isThirdCam = false;
         }
@@ -142,25 +142,25 @@ public class CharacterAction : MonoBehaviour
 
     }
 
-    #region RemoteConfig
-    struct userAttributes { };
-    struct appAttributes { };
-
-    public void FetchConfig()
-    {
-        ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
-    }
-
-    private void UpdateConfig(ConfigResponse response)
-    {
-        cameraSensitivityX = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
-        cameraSensitivityY = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
-
-        speedBlendTime = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
-
-        distanceMelee = ConfigManager.appConfig.GetFloat(nameof(distanceMelee));
-        distanceRange = ConfigManager.appConfig.GetFloat(nameof(distanceRange));
-    }
-
-    #endregion
+    // #region RemoteConfig
+    // struct userAttributes { };
+    // struct appAttributes { };
+    //
+    // public void FetchConfig()
+    // {
+    //     ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
+    // }
+    //
+    // private void UpdateConfig(ConfigResponse response)
+    // {
+    //     cameraSensitivityX = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityX));
+    //     cameraSensitivityY = ConfigManager.appConfig.GetFloat(nameof(cameraSensitivityY));
+    //
+    //     speedBlendTime = ConfigManager.appConfig.GetFloat(nameof(speedBlendTime));
+    //
+    //     distanceMelee = ConfigManager.appConfig.GetFloat(nameof(distanceMelee));
+    //     distanceRange = ConfigManager.appConfig.GetFloat(nameof(distanceRange));
+    // }
+    //
+    // #endregion
 }

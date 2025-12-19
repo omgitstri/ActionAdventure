@@ -30,19 +30,19 @@ public class DynamicConfig : MonoBehaviour
     }
 
 
-    private void Awake()
-    {
-        ConfigManager.FetchCompleted += SetPlayerConfig;
-        //FetchConfig();
-    }
-
-    public void FetchConfig(MonoBehaviour test)
-    {
-        ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
-    }
-
-    public void SetPlayerConfig(ConfigResponse response)
-    {
-
-    }
+    // private void Awake()
+    // {
+    //     ConfigManager.FetchCompleted += SetPlayerConfig;
+    //     //FetchConfig();
+    // }
+    //
+    // public void FetchConfig(MonoBehaviour test)
+    // {
+    //     ConfigManager.FetchConfigs(new userAttributes(), new appAttributes());
+    // }
+    //
+    // public void SetPlayerConfig(ConfigResponse response)
+    // {
+    //
+    // }
 }

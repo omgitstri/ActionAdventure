@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine;
+// using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private CinemachineFreeLook thirdPerson = null;
-    [SerializeField] private CinemachineFreeLook overShoulder = null;
+    // [SerializeField] private CinemachineFreeLook thirdPerson = null;
+    // [SerializeField] private CinemachineFreeLook overShoulder = null;
     [SerializeField] private Transform spine = null;
 
     private bool isOverShoulder = false;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            overShoulder.enabled = false;
+            // overShoulder.enabled = false;
             animator.SetBool("Armed", false);
             animator.SetBool("Draw", false);
         }
@@ -82,8 +82,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 inputLook = value.Get<Vector2>();
 
-        thirdPerson.m_XAxis.m_InputAxisValue = inputLook.x;
-        thirdPerson.m_YAxis.m_InputAxisValue = inputLook.y;
+        // thirdPerson.m_XAxis.m_InputAxisValue = inputLook.x;
+        // thirdPerson.m_YAxis.m_InputAxisValue = inputLook.y;
 
         if (!animator.GetBool("Armed"))
         {
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (animator.GetBool("Armed") && inputLook != Vector2.zero)
         {
-            overShoulder.enabled = true;
+            // overShoulder.enabled = true;
             rotateAxis = inputLook;
             isOverShoulder = true;
             animator.SetBool("Draw", true);
